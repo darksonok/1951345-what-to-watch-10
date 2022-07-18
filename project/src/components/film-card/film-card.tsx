@@ -1,6 +1,6 @@
-import type { film } from '../../mock/films';
+import { Film } from '../../types/types';
 
-function FilmCard(film: film): JSX.Element {
+function FilmCard(film: Film): JSX.Element {
   return (
     <article className="small-film-card catalog__films-card">
       <div className="small-film-card__image">

@@ -16,10 +16,10 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <App
-      title = {PromoFilm.title}
-      genre = {PromoFilm.genre}
-      date = {PromoFilm.date}
-      src = {(PromoFilm.src)}
+      title={PromoFilm.title}
+      genre={PromoFilm.genre}
+      date={PromoFilm.date}
+      src={(PromoFilm.src)}
     />
   </React.StrictMode>,
 );

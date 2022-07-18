@@ -1,8 +1,6 @@
-export type film = {
-  src: string,
-  title: string
-}
-const films: film[] = [
+import { Film } from '../types/types';
+
+const films: Film[] = [
   {
     src: 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg',
     title: 'Fantastic Beasts: The Crimes of Grindelwald'
