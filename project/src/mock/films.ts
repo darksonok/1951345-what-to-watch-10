@@ -1,8 +1,8 @@
-type film = {
+export type film = {
   src: string,
   title: string
 }
-const Films: film[] = [
+const films: film[] = [
   {
     src: 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg',
     title: 'Fantastic Beasts: The Crimes of Grindelwald'
@@ -85,4 +85,4 @@ const Films: film[] = [
   },
 ];
 
-export {Films};
+export {films};

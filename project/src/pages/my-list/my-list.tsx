@@ -1,4 +1,4 @@
-function MyList() {
+function Favourites() {
   return (
     <>
       <div className="visually-hidden">
@@ -160,4 +160,4 @@ function MyList() {
   );
 }
 
-export default MyList;
+export default Favourites;

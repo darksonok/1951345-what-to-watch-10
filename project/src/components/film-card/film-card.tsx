@@ -1,9 +1,6 @@
-type film = {
-  src: string,
-  title: string
-}
+import type { film } from '../../mock/films';
 
-function filmCard(film: film): JSX.Element {
+function FilmCard(film: film): JSX.Element {
   return (
     <article className="small-film-card catalog__films-card">
       <div className="small-film-card__image">
@@ -15,4 +12,4 @@ function filmCard(film: film): JSX.Element {
     </article>
   );}
 
-export default filmCard;
+export default FilmCard;

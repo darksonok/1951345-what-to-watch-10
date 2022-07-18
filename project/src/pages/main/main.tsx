@@ -1,5 +1,6 @@
 import filmCard from '../../components/film-card/film-card';
-import { Films } from '../../mock/films';
+import { films } from '../../mock/films';
+
 type PromoFilmProps = {
   title: string,
   genre: string,
@@ -142,7 +143,7 @@ function MainPage ({title, genre, date, src}: PromoFilmProps): JSX.Element {
           </ul>
 
           <div className="catalog__films-list">
-            {Films.map((film) => filmCard(film))}
+            {films.map((film) => filmCard(film))}
           </div>
 
           <div className="catalog__more">
