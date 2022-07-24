@@ -1,4 +1,5 @@
-import {RATING_VALUES} from '../../data';
+import Logo from '../../components/logo/logo';
+import {RATING_VALUES} from '../../const';
 
 function AddReview() {
   return (
@@ -12,11 +13,7 @@ function AddReview() {
 
         <header className="page-header">
           <div className="logo">
-            <a href="main.html" className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            <Logo />
           </div>
 
           <nav className="breadcrumbs">
