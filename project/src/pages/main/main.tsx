@@ -1,14 +1,18 @@
-import filmCard from '../../components/film-card/film-card';
+import { useNavigate } from 'react-router-dom';
+import { FilmsList } from '../../components/films-list/films-list';
 import Logo from '../../components/logo/logo';
-import { films } from '../../mock/films';
-import { PromoFilmProps } from '../../types/types';
+import { AppRoute } from '../../const';
+import { AppScreenProps } from '../../types/types';
 
-function MainPage ({title, genre, date, src}: PromoFilmProps): JSX.Element {
+function MainPage ({promoFilm, films}: AppScreenProps): JSX.Element {
+
+  const navigate = useNavigate();
+
   return (
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={src} alt={title} />
+          <img src={promoFilm.src} alt={promoFilm.title} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -33,14 +37,14 @@ function MainPage ({title, genre, date, src}: PromoFilmProps): JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={src} alt={title} width="218" height="327" />
+              <img src={promoFilm.src} alt={promoFilm.title} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{title}</h2>
+              <h2 className="film-card__title">{promoFilm.title}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{genre}</span>
-                <span className="film-card__year">{date}</span>
+                <span className="film-card__genre">{promoFilm.genre}</span>
+                <span className="film-card__year">{promoFilm.date}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -50,12 +54,18 @@ function MainPage ({title, genre, date, src}: PromoFilmProps): JSX.Element {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list film-card__button" type="button">
+                <button
+                  className="btn btn--list film-card__button"
+                  type="button"
+                  onClick={() => navigate(AppRoute.MyList)}
+                >
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
                   <span>My list</span>
-                  <span className="film-card__count">9</span>
+                  <span className="film-card__count">
+                    {films.filter((film) => film.isFavourite === true).length}
+                  </span>
                 </button>
               </div>
             </div>
@@ -101,7 +111,7 @@ function MainPage ({title, genre, date, src}: PromoFilmProps): JSX.Element {
           </ul>
 
           <div className="catalog__films-list">
-            {films.map((film) => filmCard(film))}
+            <FilmsList films={films} />
           </div>
 
           <div className="catalog__more">
