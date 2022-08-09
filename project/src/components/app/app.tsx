@@ -7,10 +7,10 @@ import MainPage from '../../pages/main/main';
 import MoviePage from '../../pages/movie-page/movie-page';
 import NotFound from '../../pages/not-found/not-found';
 import Player from '../../pages/player/player';
-import { PromoFilmProps } from '../../types/types';
+import { AppScreenProps } from '../../types/types';
 import PrivateRoute from '../private-route/private-route';
 
-function App({title, genre, date, src}: PromoFilmProps): JSX.Element {
+function App({promoFilm, films}: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -18,10 +18,8 @@ function App({title, genre, date, src}: PromoFilmProps): JSX.Element {
           path={AppRoute.Main}
           element={
             <MainPage
-              title={title}
-              genre={genre}
-              date={date}
-              src={src}
+              promoFilm={promoFilm}
+              films={films}
             />
           }
         />
@@ -31,17 +29,27 @@ function App({title, genre, date, src}: PromoFilmProps): JSX.Element {
             <PrivateRoute
               authorizationStatus={AuthorizationStatus.NoAuth}
             >
-              <Favourites />
+              <Favourites
+                films={films}
+              />
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Film}
-          element={<MoviePage />}
+          element={
+            <MoviePage
+              films={films}
+            />
+          }
         />
         <Route
           path={AppRoute.AddReview}
-          element={<AddReview />}
+          element={
+            <AddReview
+              films={films}
+            />
+          }
         />
         <Route
           path={AppRoute.SignIn}
@@ -49,7 +57,11 @@ function App({title, genre, date, src}: PromoFilmProps): JSX.Element {
         />
         <Route
           path={AppRoute.Player}
-          element={<Player />}
+          element={
+            <Player
+              films={films}
+            />
+          }
         />
         <Route
           path="*"

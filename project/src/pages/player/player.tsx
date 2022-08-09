@@ -1,7 +1,12 @@
-function Player() {
+import { FilmProps } from '../../types/types';
+
+function Player({films}: FilmProps) {
+  const id: number = parseInt(window.location.pathname.split('/')[2], 10);
+  const openedFilm = films.filter((film) => film.id === id)[0];
+
   return (
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video src={openedFilm.url} className="player__video" poster={openedFilm.src}></video>
 
       <button type="button" className="player__exit">Exit</button>
 
