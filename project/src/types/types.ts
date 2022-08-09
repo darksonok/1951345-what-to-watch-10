@@ -43,3 +43,7 @@ export type FilmProps = {
 export type FilmCardProps = {
   film: Film,
 }
+
+export type VideoPlayerProps = {
+  film: Film,
+}
