@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { RATING_VALUES } from '../../const';
 
 function AddReviewForm(): JSX.Element {
-
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState('');
 

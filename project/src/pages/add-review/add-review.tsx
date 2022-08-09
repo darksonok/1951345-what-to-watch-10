@@ -1,5 +1,8 @@
+import { Link } from 'react-router-dom';
 import AddReviewForm from '../../components/add-review-form/add-review-form';
+import App from '../../components/app/app';
 import Logo from '../../components/logo/logo';
+import { AppRoute } from '../../const';
 import { FilmProps } from '../../types/types';
 
 function AddReview({films}: FilmProps) {
@@ -23,10 +26,20 @@ function AddReview({films}: FilmProps) {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="film-page.html" className="breadcrumbs__link">{openedFilm.title}</a>
+                <Link
+                  className="breadcrumbs__link"
+                  to={`/films/${openedFilm.id}`}
+                >
+                  {openedFilm.title}
+                </Link>
               </li>
               <li className="breadcrumbs__item">
-                <a className="breadcrumbs__link">Add review</a>
+                <Link
+                  className="breadcrumbs__link"
+                  to={''}
+                >
+                  Add review
+                </Link>
               </li>
             </ul>
           </nav>
@@ -38,7 +51,12 @@ function AddReview({films}: FilmProps) {
               </div>
             </li>
             <li className="user-block__item">
-              <a className="user-block__link">Sign out</a>
+              <Link
+                className="user-block__link"
+                to={AppRoute.SignIn}
+              >
+                Sign out
+              </Link>
             </li>
           </ul>
         </header>
