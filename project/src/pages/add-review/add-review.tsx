@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import AddReviewForm from '../../components/add-review-form/add-review-form';
-import App from '../../components/app/app';
 import Logo from '../../components/logo/logo';
 import { AppRoute } from '../../const';
 import { FilmProps } from '../../types/types';
