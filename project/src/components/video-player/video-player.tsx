@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
+import { VIDEO_PREVIEW_DELAY } from '../../const';
 import { VideoPlayerProps } from '../../types/types';
+
 
 function VideoPreviewPlayer({ film }: VideoPlayerProps):JSX.Element {
 
@@ -12,7 +14,7 @@ function VideoPreviewPlayer({ film }: VideoPlayerProps):JSX.Element {
       }
 
       videoRef.current.play();
-    }, 1000);
+    }, VIDEO_PREVIEW_DELAY);
   }, []);
 
   return(
