@@ -17,14 +17,15 @@ function VideoPreviewPlayer({ film }: VideoPlayerProps):JSX.Element {
     }, VIDEO_PREVIEW_DELAY);
   }, []);
 
-  return(
+  return (
     <video
       ref={videoRef}
       src={film.url}
       className="player__video"
       poster={film.src}
       muted
-    /> );
+    />
+  );
 }
 
 export default VideoPreviewPlayer;
