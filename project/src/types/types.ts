@@ -11,6 +11,7 @@ export type Film = {
   director: string,
   staring: string,
   url: string,
+  runTime: number,
   reviews: Review[]
 }
 
@@ -27,8 +28,11 @@ export type PrivateRouteProps = {
 }
 
 export type Review = {
+  id: number,
   author: string,
-  text: string
+  text: string,
+  date: string,
+  rating: number
 }
 
 export type AppScreenProps = {
@@ -46,4 +50,8 @@ export type FilmCardProps = {
 
 export type VideoPlayerProps = {
   film: Film,
+}
+
+export type TabsProps = {
+  openedFilm: Film,
 }

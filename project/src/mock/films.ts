@@ -11,11 +11,15 @@ const films: Film[] = [
     description: 'someDescription',
     director: 'someDirector',
     staring: 'someActors',
+    runTime: 120,
     url: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     reviews: [
       {
+        id:1,
         author: 'someAuthor',
-        text: 'great'
+        text: 'great',
+        date: '12.08.2022',
+        rating: 9.8,
       }
     ]
   },
@@ -29,12 +33,16 @@ const films: Film[] = [
     description: 'someDescription',
     director: 'someDirector',
     staring: 'someActors',
+    runTime: 120,
     url: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     reviews: [
       {
+        id:1,
         author: 'someAuthor',
-        text: 'great'
-      }
+        text: 'great',
+        date: '12.08.2022',
+        rating: 9.8,
+      },
     ]
   },
   {
@@ -47,11 +55,15 @@ const films: Film[] = [
     description: 'someDescription',
     director: 'someDirector',
     staring: 'someActors',
+    runTime: 120,
     url: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     reviews: [
       {
+        id:1,
         author: 'someAuthor',
-        text: 'great'
+        text: 'great',
+        date: '12.08.2022',
+        rating: 9.8,
       }
     ]
   },
@@ -65,11 +77,15 @@ const films: Film[] = [
     description: 'someDescription',
     director: 'someDirector',
     staring: 'someActors',
+    runTime: 120,
     url: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     reviews: [
       {
+        id:1,
         author: 'someAuthor',
-        text: 'great'
+        text: 'great',
+        date: '12.08.2022',
+        rating: 9.8,
       }
     ]
   },
@@ -83,11 +99,15 @@ const films: Film[] = [
     description: 'someDescription',
     director: 'someDirector',
     staring: 'someActors',
+    runTime: 120,
     url: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     reviews: [
       {
+        id:1,
         author: 'someAuthor',
-        text: 'great'
+        text: 'great',
+        date: '12.08.2022',
+        rating: 9.8,
       }
     ]
   },
@@ -101,11 +121,15 @@ const films: Film[] = [
     description: 'someDescription',
     director: 'someDirector',
     staring: 'someActors',
+    runTime: 120,
     url: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     reviews: [
       {
+        id:1,
         author: 'someAuthor',
-        text: 'great'
+        text: 'great',
+        date: '12.08.2022',
+        rating: 9.8,
       }
     ]
   },
@@ -119,11 +143,15 @@ const films: Film[] = [
     description: 'someDescription',
     director: 'someDirector',
     staring: 'someActors',
+    runTime: 120,
     url: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     reviews: [
       {
+        id:1,
         author: 'someAuthor',
-        text: 'great'
+        text: 'great',
+        date: '12.08.2022',
+        rating: 9.8,
       }
     ]
   },
@@ -137,11 +165,15 @@ const films: Film[] = [
     description: 'someDescription',
     director: 'someDirector',
     staring: 'someActors',
+    runTime: 120,
     url: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     reviews: [
       {
+        id:1,
         author: 'someAuthor',
-        text: 'great'
+        text: 'great',
+        date: '12.08.2022',
+        rating: 9.8,
       }
     ]
   },
@@ -155,11 +187,15 @@ const films: Film[] = [
     description: 'someDescription',
     director: 'someDirector',
     staring: 'someActors',
+    runTime: 120,
     url: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     reviews: [
       {
+        id:1,
         author: 'someAuthor',
-        text: 'great'
+        text: 'great',
+        date: '12.08.2022',
+        rating: 9.8,
       }
     ]
   },
@@ -173,11 +209,15 @@ const films: Film[] = [
     description: 'someDescription',
     director: 'someDirector',
     staring: 'someActors',
+    runTime: 120,
     url: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     reviews: [
       {
+        id:1,
         author: 'someAuthor',
-        text: 'great'
+        text: 'great',
+        date: '12.08.2022',
+        rating: 9.8,
       }
     ]
   },
@@ -191,11 +231,15 @@ const films: Film[] = [
     description: 'someDescription',
     director: 'someDirector',
     staring: 'someActors',
+    runTime: 120,
     url: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     reviews: [
       {
+        id:1,
         author: 'someAuthor',
-        text: 'great'
+        text: 'great',
+        date: '12.08.2022',
+        rating: 9.8,
       }
     ]
   },
@@ -209,11 +253,15 @@ const films: Film[] = [
     description: 'someDescription',
     director: 'someDirector',
     staring: 'someActors',
+    runTime: 120,
     url: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     reviews: [
       {
+        id:1,
         author: 'someAuthor',
-        text: 'great'
+        text: 'great',
+        date: '12.08.2022',
+        rating: 9.8,
       }
     ]
   },
@@ -227,11 +275,15 @@ const films: Film[] = [
     description: 'someDescription',
     director: 'someDirector',
     staring: 'someActors',
+    runTime: 120,
     url: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     reviews: [
       {
+        id:1,
         author: 'someAuthor',
-        text: 'great'
+        text: 'great',
+        date: '12.08.2022',
+        rating: 9.8,
       }
     ]
   },
@@ -245,11 +297,15 @@ const films: Film[] = [
     description: 'someDescription',
     director: 'someDirector',
     staring: 'someActors',
+    runTime: 120,
     url: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     reviews: [
       {
+        id:1,
         author: 'someAuthor',
-        text: 'great'
+        text: 'great',
+        date: '12.08.2022',
+        rating: 9.8,
       }
     ]
   },
@@ -263,11 +319,15 @@ const films: Film[] = [
     description: 'someDescription',
     director: 'someDirector',
     staring: 'someActors',
+    runTime: 120,
     url: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     reviews: [
       {
+        id:1,
         author: 'someAuthor',
-        text: 'great'
+        text: 'great',
+        date: '12.08.2022',
+        rating: 9.8,
       }
     ]
   },
@@ -281,11 +341,15 @@ const films: Film[] = [
     description: 'someDescription',
     director: 'someDirector',
     staring: 'someActors',
+    runTime: 120,
     url: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     reviews: [
       {
+        id:1,
         author: 'someAuthor',
-        text: 'great'
+        text: 'great',
+        date: '12.08.2022',
+        rating: 9.8,
       }
     ]
   },
@@ -299,11 +363,15 @@ const films: Film[] = [
     description: 'someDescription',
     director: 'someDirector',
     staring: 'someActors',
+    runTime: 120,
     url: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     reviews: [
       {
+        id:1,
         author: 'someAuthor',
-        text: 'great'
+        text: 'great',
+        date: '12.08.2022',
+        rating: 9.8,
       }
     ]
   },
@@ -317,11 +385,15 @@ const films: Film[] = [
     description: 'someDescription',
     director: 'someDirector',
     staring: 'someActors',
+    runTime: 120,
     url: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     reviews: [
       {
+        id:1,
         author: 'someAuthor',
-        text: 'great'
+        text: 'great',
+        date: '12.08.2022',
+        rating: 9.8,
       }
     ]
   },
@@ -335,11 +407,15 @@ const films: Film[] = [
     description: 'someDescription',
     director: 'someDirector',
     staring: 'someActors',
+    runTime: 120,
     url: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     reviews: [
       {
+        id:1,
         author: 'someAuthor',
-        text: 'great'
+        text: 'great',
+        date: '12.08.2022',
+        rating: 9.8,
       }
     ]
   },
@@ -353,11 +429,15 @@ const films: Film[] = [
     description: 'someDescription',
     director: 'someDirector',
     staring: 'someActors',
+    runTime: 120,
     url: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     reviews: [
       {
+        id:1,
         author: 'someAuthor',
-        text: 'great'
+        text: 'great',
+        date: '12.08.2022',
+        rating: 9.8,
       }
     ]
   },

@@ -24,8 +24,18 @@ const PromoFilm = {
 
 const VIDEO_PREVIEW_DELAY = 1000;
 
+const TABS = {
+  OVERVIEW: 'Overview',
+  DETAILS: 'Details',
+  REVIEWS: 'Reviews'
+};
+
+const NUMBER_OF_SIMILAR_FILMS_IN_FILM_PAGE = 4;
+
 export {
   RATING_VALUES,
   PromoFilm,
-  VIDEO_PREVIEW_DELAY
+  VIDEO_PREVIEW_DELAY,
+  TABS,
+  NUMBER_OF_SIMILAR_FILMS_IN_FILM_PAGE
 };
