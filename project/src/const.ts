@@ -22,7 +22,10 @@ const PromoFilm = {
   src: 'img/bg-the-grand-budapest-hotel.jpg'
 };
 
+const VIDEO_PREVIEW_DELAY = 1000;
+
 export {
   RATING_VALUES,
-  PromoFilm
+  PromoFilm,
+  VIDEO_PREVIEW_DELAY
 };

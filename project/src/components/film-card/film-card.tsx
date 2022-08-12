@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FilmCardProps } from '../../types/types';
+import VideoPreviewPlayer from '../video-player/video-player';
 
 function FilmCard({ film }: FilmCardProps): JSX.Element {
 
@@ -18,7 +19,9 @@ function FilmCard({ film }: FilmCardProps): JSX.Element {
       <div className="small-film-card__image">
         {
           isUnderMouse ?
-            <span>Тут потом будет воспроизводится видео</span> :
+            <VideoPreviewPlayer
+              film={film}
+            /> :
             <img src={film.src} alt={film.title} width="280" height="175" />
         }
       </div>
