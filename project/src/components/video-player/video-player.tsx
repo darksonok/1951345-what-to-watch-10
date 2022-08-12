@@ -6,16 +6,19 @@ import { VideoPlayerProps } from '../../types/types';
 function VideoPreviewPlayer({ film }: VideoPlayerProps):JSX.Element {
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const playFilmPreview = () => {
+    if (videoRef.current === null) {
+      return;
+    }
+    videoRef.current.play();
+  };
 
   useEffect(() => {
-    setTimeout(() => {
-      if (videoRef.current === null) {
-        return;
-      }
-
-      videoRef.current.play();
-    }, VIDEO_PREVIEW_DELAY);
-  }, []);
+    const timeoutId = setTimeout(playFilmPreview, VIDEO_PREVIEW_DELAY);
+    return (() => {
+      clearTimeout(timeoutId);
+    });
+  });
 
   return (
     <video
