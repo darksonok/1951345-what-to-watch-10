@@ -92,7 +92,7 @@ function MoviePage({films}: FilmProps) {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
           <div className="catalog__films-list">
-            {films.filter((film) => film.genre === openedFilm.genre).slice(-NUMBER_OF_SIMILAR_FILMS_IN_FILM_PAGE).map((film: Film) => {
+            {films.filter((film) => film.genre === openedFilm.genre).slice(0,NUMBER_OF_SIMILAR_FILMS_IN_FILM_PAGE).map((film: Film) => {
               const keyValue = `${film.id}-${film.title}`;
               return (
                 <FilmCard

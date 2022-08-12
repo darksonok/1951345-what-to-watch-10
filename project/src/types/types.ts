@@ -53,5 +53,14 @@ export type VideoPlayerProps = {
 }
 
 export type TabsProps = {
+  [openedFilm: string]: Film,
+}
+
+export type OverviewProps = {
   openedFilm: Film,
+  totalRating: string
+}
+
+export type ReviewsProps = {
+  reviews: Review[]
 }

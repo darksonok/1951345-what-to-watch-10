@@ -1,18 +1,20 @@
+import { HUMANIZE_RATION_OPTIONS } from './const';
+
 const huminizaRAting = (rating: number) => {
   switch(true){
-    case (rating === 10):
+    case (rating === HUMANIZE_RATION_OPTIONS.BEST):
       return 'Best';
-    case (rating > 8 && rating < 10):
+    case (rating > HUMANIZE_RATION_OPTIONS.GOOD && rating < HUMANIZE_RATION_OPTIONS.BEST):
       return 'Very Good';
-    case (rating > 6 && rating <= 8):
+    case (rating > HUMANIZE_RATION_OPTIONS.NOT_SO_BAD && rating <= HUMANIZE_RATION_OPTIONS.GOOD):
       return 'Good';
-    case (rating > 4 && rating <= 6):
+    case (rating > HUMANIZE_RATION_OPTIONS.BAD && rating <= HUMANIZE_RATION_OPTIONS.NOT_SO_BAD):
       return 'Not So Bad';
-    case (rating > 2 && rating <= 4):
+    case (rating > HUMANIZE_RATION_OPTIONS.VERY_BAD && rating <= HUMANIZE_RATION_OPTIONS.BAD):
       return 'Bad';
-    case (rating > 0 && rating <= 2):
+    case (rating > HUMANIZE_RATION_OPTIONS.BETTER_GO_HOME && rating <= HUMANIZE_RATION_OPTIONS.VERY_BAD):
       return 'Very Bad';
-    case (rating === 0):
+    case (rating === HUMANIZE_RATION_OPTIONS.BETTER_GO_HOME):
       return 'Better Go Home';
   }
 };

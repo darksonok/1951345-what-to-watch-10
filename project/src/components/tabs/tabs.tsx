@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { TABS } from '../../const';
 import { TabsProps } from '../../types/types';
-import { huminizaRAting } from '../../utils';
+import Details from './details/details';
+import Overview from './overview/overview';
+import Reviews from './reviews/reviews';
 
 function Tabs({openedFilm}: TabsProps) {
 
@@ -11,73 +13,15 @@ function Tabs({openedFilm}: TabsProps) {
     switch(true){
       case (tab === TABS.OVERVIEW):
         return (
-          <>
-            <div className="film-rating">
-              <div className="film-rating__score">
-                {totalRating}
-              </div>
-              <p className="film-rating__meta">
-                <span className="film-rating__level">{huminizaRAting(Number(totalRating))}</span>
-                <span className="film-rating__count">{openedFilm.reviews.length} Ratings</span>
-              </p>
-            </div>
-            <div className="film-card__text">
-              <p>{openedFilm.description} </p>
-              <p className="film-card__director"><strong>{openedFilm.director}</strong></p>
-              <p className="film-card__starring"><strong>{openedFilm.staring}</strong></p>
-            </div>
-          </>
+          <Overview openedFilm={openedFilm} totalRating={totalRating} />
         );
       case (tab === TABS.DETAILS):
         return (
-          <div className="film-card__text film-card__row">
-            <div className="film-card__text-col">
-              <p className="film-card__details-item">
-                <strong className="film-card__details-name">Director</strong>
-                <span className="film-card__details-value">{openedFilm.director}</span>
-              </p>
-              <p className="film-card__details-item">
-                <strong className="film-card__details-name">Starring</strong>
-                <span className="film-card__details-value">
-                  {openedFilm.staring }
-                </span>
-              </p>
-            </div>
-
-            <div className="film-card__text-col">
-              <p className="film-card__details-item">
-                <strong className="film-card__details-name">Run Time</strong>
-                <span className="film-card__details-value">{openedFilm.runTime} m</span>
-              </p>
-              <p className="film-card__details-item">
-                <strong className="film-card__details-name">Genre</strong>
-                <span className="film-card__details-value">{openedFilm.genre}</span>
-              </p>
-              <p className="film-card__details-item">
-                <strong className="film-card__details-name">Released</strong>
-                <span className="film-card__details-value">{openedFilm.date}</span>
-              </p>
-            </div>
-          </div>
+          <Details openedFilm={openedFilm} />
         );
       case (tab === TABS.REVIEWS):
         return (
-          <div className="film-card__reviews film-card__row">
-            <div className="film-card__reviews-col">
-              {openedFilm.reviews.map((review) => (
-                <div key={review.id} className="review">
-                  <blockquote className="review__quote">
-                    <p className="review__text">{review.text}</p>
-                    <footer className="review__details">
-                      <cite className="review__author">{review.author}</cite>
-                      <time className="review__date" dateTime={review.date}>{review.date}</time>
-                    </footer>
-                  </blockquote>
-
-                  <div className="review__rating">{review.rating}</div>
-                </div>))}
-            </div>
-          </div>
+          <Reviews reviews={openedFilm.reviews} />
         );
     }
   };
@@ -86,30 +30,16 @@ function Tabs({openedFilm}: TabsProps) {
     <div className="film-card__desc">
       <nav className="film-nav film-card__nav">
         <ul className="film-nav__list">
-          <li className={`film-nav__item ${selectedTab === TABS.OVERVIEW ? 'film-nav__item--active' : '' }`}>
-            <span
-              className="film-nav__link"
-              onClick={() => setSelectedTab(TABS.OVERVIEW)}
-            >
-                Overview
-            </span>
-          </li>
-          <li className={`film-nav__item ${selectedTab === TABS.DETAILS ? 'film-nav__item--active' : '' }`}>
-            <span
-              className="film-nav__link"
-              onClick={() => setSelectedTab(TABS.DETAILS)}
-            >
-              Details
-            </span>
-          </li>
-          <li className={`film-nav__item ${selectedTab === TABS.REVIEWS ? 'film-nav__item--active' : '' }`}>
-            <span
-              className="film-nav__link"
-              onClick={() => setSelectedTab(TABS.REVIEWS)}
-            >
-              Reviews
-            </span>
-          </li>
+          {Object.keys(TABS).map((tab:string) => (
+            <li key={TABS[tab]} className={`film-nav__item ${selectedTab === TABS[tab] ? 'film-nav__item--active' : '' }`}>
+              <span
+                className="film-nav__link"
+                onClick={() => setSelectedTab(TABS[tab])}
+              >
+                {TABS[tab]}
+              </span>
+            </li>
+          ))}
         </ul>
       </nav>
       {renderSwitch(selectedTab)}
