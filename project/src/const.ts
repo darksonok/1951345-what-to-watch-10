@@ -24,8 +24,30 @@ const PromoFilm = {
 
 const VIDEO_PREVIEW_DELAY = 1000;
 
+const TABS: {
+  [key: string]: string
+} = {
+  OVERVIEW: 'Overview',
+  DETAILS: 'Details',
+  REVIEWS: 'Reviews'
+};
+
+const NUMBER_OF_SIMILAR_FILMS_IN_FILM_PAGE = 4;
+
+const HUMANIZE_RATION_OPTIONS = {
+  BETTER_GO_HOME: 0,
+  VERY_BAD: 2,
+  BAD: 4,
+  NOT_SO_BAD: 6,
+  GOOD: 8,
+  BEST: 10
+};
+
 export {
   RATING_VALUES,
   PromoFilm,
-  VIDEO_PREVIEW_DELAY
+  VIDEO_PREVIEW_DELAY,
+  TABS,
+  NUMBER_OF_SIMILAR_FILMS_IN_FILM_PAGE,
+  HUMANIZE_RATION_OPTIONS
 };

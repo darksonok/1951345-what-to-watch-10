@@ -1,6 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom';
+import FilmCard from '../../components/film-card/film-card';
 import Logo from '../../components/logo/logo';
-import { FilmProps } from '../../types/types';
+import Tabs from '../../components/tabs/tabs';
+import { AppRoute, NUMBER_OF_SIMILAR_FILMS_IN_FILM_PAGE } from '../../const';
+import { Film, FilmProps } from '../../types/types';
 
 function MoviePage({films}: FilmProps) {
   const id: number = parseInt(window.location.pathname.split('/')[2], 10);
@@ -28,7 +31,12 @@ function MoviePage({films}: FilmProps) {
                 </div>
               </li>
               <li className="user-block__item">
-                <a className="user-block__link">Sign out</a>
+                <Link
+                  className="user-block__link"
+                  to={AppRoute.SignIn}
+                >
+                  Sign out
+                </Link>
               </li>
             </ul>
           </header>
@@ -75,38 +83,7 @@ function MoviePage({films}: FilmProps) {
             <div className="film-card__poster film-card__poster--big">
               <img src={openedFilm.src} alt={openedFilm.title} width="218" height="327" />
             </div>
-
-            <div className="film-card__desc">
-              <nav className="film-nav film-card__nav">
-                <ul className="film-nav__list">
-                  <li className="film-nav__item film-nav__item--active">
-                    <a href="#" className="film-nav__link">Overview</a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Details</a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
-
-              <div className="film-rating">
-                <div className="film-rating__score">8,9</div>
-                <p className="film-rating__meta">
-                  <span className="film-rating__level">Very good</span>
-                  <span className="film-rating__count">240 ratings</span>
-                </p>
-              </div>
-
-              <div className="film-card__text">
-                <p>{openedFilm.description} </p>
-
-                <p className="film-card__director"><strong>{openedFilm.director}</strong></p>
-
-                <p className="film-card__starring"><strong>{openedFilm.staring}</strong></p>
-              </div>
-            </div>
+            <Tabs openedFilm={openedFilm} />
           </div>
         </div>
       </section>
@@ -114,43 +91,16 @@ function MoviePage({films}: FilmProps) {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-
           <div className="catalog__films-list">
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Bohemian Rhapsody</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Macbeth</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/aviator.jpg" alt="Aviator" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Aviator</a>
-              </h3>
-            </article>
+            {films.filter((film) => film.genre === openedFilm.genre).slice(0,NUMBER_OF_SIMILAR_FILMS_IN_FILM_PAGE).map((film: Film) => {
+              const keyValue = `${film.id}-${film.title}`;
+              return (
+                <FilmCard
+                  key={keyValue}
+                  film={film}
+                />
+              );}
+            )}
           </div>
         </section>
 

@@ -1,0 +1,22 @@
+import { HUMANIZE_RATION_OPTIONS } from './const';
+
+const huminizaRAting = (rating: number) => {
+  switch(true){
+    case (rating === HUMANIZE_RATION_OPTIONS.BEST):
+      return 'Best';
+    case (rating > HUMANIZE_RATION_OPTIONS.GOOD && rating < HUMANIZE_RATION_OPTIONS.BEST):
+      return 'Very Good';
+    case (rating > HUMANIZE_RATION_OPTIONS.NOT_SO_BAD && rating <= HUMANIZE_RATION_OPTIONS.GOOD):
+      return 'Good';
+    case (rating > HUMANIZE_RATION_OPTIONS.BAD && rating <= HUMANIZE_RATION_OPTIONS.NOT_SO_BAD):
+      return 'Not So Bad';
+    case (rating > HUMANIZE_RATION_OPTIONS.VERY_BAD && rating <= HUMANIZE_RATION_OPTIONS.BAD):
+      return 'Bad';
+    case (rating > HUMANIZE_RATION_OPTIONS.BETTER_GO_HOME && rating <= HUMANIZE_RATION_OPTIONS.VERY_BAD):
+      return 'Very Bad';
+    case (rating === HUMANIZE_RATION_OPTIONS.BETTER_GO_HOME):
+      return 'Better Go Home';
+  }
+};
+
+export { huminizaRAting };
