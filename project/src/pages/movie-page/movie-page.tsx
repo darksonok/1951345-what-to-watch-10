@@ -1,14 +1,21 @@
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import FilmCard from '../../components/film-card/film-card';
 import Logo from '../../components/logo/logo';
 import Tabs from '../../components/tabs/tabs';
 import { AppRoute, NUMBER_OF_SIMILAR_FILMS_IN_FILM_PAGE } from '../../const';
+import { useAppSelector } from '../../hooks';
+import { changeGenreAction } from '../../store/actions';
+import { filterFilmsByGenre } from '../../store/logic';
 import { Film, FilmProps } from '../../types/types';
 
 function MoviePage({films}: FilmProps) {
   const id: number = parseInt(window.location.pathname.split('/')[2], 10);
   const openedFilm = films.filter((film) => film.id === id)[0];
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  dispatch(changeGenreAction(openedFilm.genre));
+  const similarFilms = useAppSelector(filterFilmsByGenre);
   return (
     <>
       <section className="film-card film-card--full">
@@ -92,7 +99,7 @@ function MoviePage({films}: FilmProps) {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
           <div className="catalog__films-list">
-            {films.filter((film) => film.genre === openedFilm.genre).slice(0,NUMBER_OF_SIMILAR_FILMS_IN_FILM_PAGE).map((film: Film) => {
+            {similarFilms.slice(0,NUMBER_OF_SIMILAR_FILMS_IN_FILM_PAGE).map((film: Film) => {
               const keyValue = `${film.id}-${film.title}`;
               return (
                 <FilmCard

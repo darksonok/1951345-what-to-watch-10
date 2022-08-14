@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom';
 import { FilmsList } from '../../components/films-list/films-list';
 import Logo from '../../components/logo/logo';
+import { AppRoute } from '../../const';
 import { Film, FilmProps } from '../../types/types';
 
 function Favourites({films}: FilmProps) {
@@ -20,7 +22,7 @@ function Favourites({films}: FilmProps) {
             </div>
           </li>
           <li className="user-block__item">
-            <a className="user-block__link">Sign out</a>
+            <Link className="user-block__link" to={AppRoute.SignIn}>Sign out</Link>
           </li>
         </ul>
       </header>
