@@ -64,3 +64,14 @@ export type OverviewProps = {
 export type ReviewsProps = {
   reviews: Review[]
 }
+
+export type InitialState = {
+  genre: string,
+  films: Film[]
+}
+
+export type GenreProps = {
+  genre: string,
+  activeGenre: string,
+  onGenreClick: (genre: string) => void;
+}

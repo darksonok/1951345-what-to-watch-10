@@ -1,4 +1,5 @@
 import { HUMANIZE_RATION_OPTIONS } from './const';
+import { Film } from './types/types';
 
 const huminizaRAting = (rating: number) => {
   switch(true){
@@ -19,4 +20,9 @@ const huminizaRAting = (rating: number) => {
   }
 };
 
-export { huminizaRAting };
+const getFilmGenres = (filmList: Film[]) => ['All genres', ...new Set(filmList.map((film) => film.genre))];
+
+export {
+  huminizaRAting,
+  getFilmGenres,
+};
