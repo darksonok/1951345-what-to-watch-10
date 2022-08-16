@@ -11,4 +11,3 @@ export const showMoreFilms = createAction('/films/showMore', (numberOfShownFilms
   payload: numberOfShownFilms
 }));
 
-export const resetShownFilms = createAction('/films/showMore/reset');
