@@ -78,6 +78,4 @@ export type GenreProps = {
   onGenreClick: (genre: string) => void;
 }
 
-export type ShowMoreButtonProps = {
-  handler: () => void,
-}
+

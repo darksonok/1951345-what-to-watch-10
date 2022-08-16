@@ -17,7 +17,7 @@ function MainPage ({promoFilm}: AppScreenProps): JSX.Element {
   const numberOfShownFilms = useAppSelector((state) => state.shownFilms);
   const allFilms = useAppSelector(filterFilmsByGenre);
   const films = useAppSelector(filterFilmsByGenre).slice(0, numberOfShownFilms);
-  const showMoreHandler = () =>{
+  const handleShowMore = () => {
     dispatch(showMoreFilms(numberOfShownFilms));
   };
 
@@ -102,7 +102,7 @@ function MainPage ({promoFilm}: AppScreenProps): JSX.Element {
           </div>
 
           <div className="catalog__more">
-            {allFilms.length > films.length && <ShowMoreButton handler={showMoreHandler} />}
+            {allFilms.length > films.length && <ShowMoreButton onClick={handleShowMore} />}
           </div>
         </section>
 

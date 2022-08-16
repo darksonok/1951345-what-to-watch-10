@@ -1,11 +1,13 @@
-import { ShowMoreButtonProps } from '../../types/types';
+type ShowMoreButtonType = {
+  onClick: () => void,
+}
 
-function ShowMoreButton ({handler} : ShowMoreButtonProps) {
+function ShowMoreButton ({onClick} : ShowMoreButtonType) {
   return (
     <button
       className="catalog__button"
       type="button"
-      onClick={handler}
+      onClick={onClick}
     >
       Show more
     </button>
