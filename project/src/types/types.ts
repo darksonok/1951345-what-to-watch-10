@@ -19,7 +19,8 @@ export type PromoFilmProps = {
   title: string,
   genre: string,
   date: number,
-  src: string
+  src: string,
+  id: number
 }
 
 export type PrivateRouteProps = {
@@ -67,11 +68,16 @@ export type ReviewsProps = {
 
 export type InitialState = {
   genre: string,
-  films: Film[]
+  films: Film[],
+  shownFilms: number,
 }
 
 export type GenreProps = {
   genre: string,
   activeGenre: string,
   onGenreClick: (genre: string) => void;
+}
+
+export type ShowMoreButtonProps = {
+  handler: () => void,
 }

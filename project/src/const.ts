@@ -19,7 +19,8 @@ const PromoFilm = {
   title: 'The Grand Budapest Hotel',
   genre: 'Drama',
   date: 2014,
-  src: 'img/bg-the-grand-budapest-hotel.jpg'
+  src: 'img/bg-the-grand-budapest-hotel.jpg',
+  id: 2
 };
 
 const VIDEO_PREVIEW_DELAY = 1000;
@@ -45,6 +46,8 @@ const HUMANIZE_RATION_OPTIONS = {
 
 const DEFAULT_GENRE = 'All genres';
 
+const NUMBER_FILMS_TO_SHOW = 8;
+
 export {
   RATING_VALUES,
   PromoFilm,
@@ -53,4 +56,5 @@ export {
   NUMBER_OF_SIMILAR_FILMS_IN_FILM_PAGE,
   HUMANIZE_RATION_OPTIONS,
   DEFAULT_GENRE,
+  NUMBER_FILMS_TO_SHOW,
 };
