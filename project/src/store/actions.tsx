@@ -6,3 +6,7 @@ export const changeGenreAction = createAction('films/changeGenre', (genre) => ({
 }));
 
 export const loadFilms = createAction<Film[]>('data/loadFilms');
+
+export const changeLoadingStatus = createAction('data/loadingStatus', (isLoading) => ({
+  payload: isLoading
+}));

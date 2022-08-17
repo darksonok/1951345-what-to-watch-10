@@ -1,6 +1,10 @@
 import { AuthorizationStatus } from '../const';
 
 export type Film = {
+  backgroundColor: string,
+  backgroundImage: string,
+  previewImage: string,
+  previewVideoLink: string,
   src: string,
   title: string,
   id: number,
@@ -37,7 +41,6 @@ export type Review = {
 
 export type AppScreenProps = {
   promoFilm: PromoFilmProps,
-  films: Film[]
 }
 
 export type FilmProps = {
@@ -67,7 +70,8 @@ export type ReviewsProps = {
 
 export type InitialState = {
   genre: string,
-  films: Film[]
+  films: Film[],
+  isLoading: boolean,
 }
 
 export type GenreProps = {

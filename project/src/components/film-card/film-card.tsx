@@ -22,7 +22,7 @@ function FilmCard({ film }: FilmCardProps): JSX.Element {
             <VideoPreviewPlayer
               film={film}
             /> :
-            <img src={film.src} alt={film.title} width="280" height="175" />
+            <img src={film.previewImage} alt={film.title} width="280" height="175" />
         }
       </div>
       <h3 className="small-film-card__title">
