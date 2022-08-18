@@ -21,7 +21,7 @@ function MoviePage({films}: FilmProps) {
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={openedFilm.src} alt={openedFilm.title} />
+            <img src={openedFilm.backgroundImage} alt={openedFilm.name} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -50,10 +50,10 @@ function MoviePage({films}: FilmProps) {
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">{openedFilm.title}</h2>
+              <h2 className="film-card__title">{openedFilm.name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{openedFilm.genre}</span>
-                <span className="film-card__year">{openedFilm.date}</span>
+                <span className="film-card__year">{openedFilm.released}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -88,7 +88,7 @@ function MoviePage({films}: FilmProps) {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={openedFilm.src} alt={openedFilm.title} width="218" height="327" />
+              <img src={openedFilm.posterImage} alt={openedFilm.name} width="218" height="327" />
             </div>
             <Tabs openedFilm={openedFilm} />
           </div>
@@ -100,7 +100,7 @@ function MoviePage({films}: FilmProps) {
           <h2 className="catalog__title">More like this</h2>
           <div className="catalog__films-list">
             {similarFilms.slice(0,NUMBER_OF_SIMILAR_FILMS_IN_FILM_PAGE).map((film: Film) => {
-              const keyValue = `${film.id}-${film.title}`;
+              const keyValue = `${film.id}-${film.name}`;
               return (
                 <FilmCard
                   key={keyValue}

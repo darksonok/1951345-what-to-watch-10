@@ -1,22 +1,23 @@
 import { AuthorizationStatus } from '../const';
 
 export type Film = {
-  backgroundColor: string,
-  backgroundImage: string,
-  previewImage: string,
-  previewVideoLink: string,
-  src: string,
-  title: string,
   id: number,
-  isFavourite: boolean,
-  date: number,
-  genre: string,
+  name: string,
+  posterImage: string,
+  previewImage: string,
+  backgroundImage: string,
+  backgroundColor: string,
+  videoLink: string,
+  previewVideoLink: string,
   description: string,
+  rating: number,
+  scoresCount: number,
   director: string,
-  staring: string,
-  url: string,
+  starring: [string],
   runTime: number,
-  reviews: Review[]
+  genre: string,
+  released: number,
+  isFavorite: boolean,
 }
 
 export type PromoFilmProps = {

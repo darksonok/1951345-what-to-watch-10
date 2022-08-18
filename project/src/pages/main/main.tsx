@@ -68,7 +68,7 @@ function MainPage ({promoFilm}: AppScreenProps): JSX.Element {
                   </svg>
                   <span>My list</span>
                   <span className="film-card__count">
-                    {films.filter((film) => film.isFavourite === true).length}
+                    {films.filter((film) => film.isFavorite === true).length}
                   </span>
                 </button>
               </div>

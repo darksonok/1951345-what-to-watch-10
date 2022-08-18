@@ -12,7 +12,7 @@ function AddReview({films}: FilmProps) {
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={openedFilm.src} alt={openedFilm.title} />
+          <img src={openedFilm.backgroundImage} alt={openedFilm.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -29,7 +29,7 @@ function AddReview({films}: FilmProps) {
                   className="breadcrumbs__link"
                   to={`/films/${openedFilm.id}`}
                 >
-                  {openedFilm.title}
+                  {openedFilm.name}
                 </Link>
               </li>
               <li className="breadcrumbs__item">
@@ -61,7 +61,7 @@ function AddReview({films}: FilmProps) {
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src={openedFilm.src} alt={openedFilm.title} width="218" height="327" />
+          <img src={openedFilm.posterImage} alt={openedFilm.name} width="218" height="327" />
         </div>
       </div>
       <AddReviewForm />

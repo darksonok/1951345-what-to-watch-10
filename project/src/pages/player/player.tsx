@@ -6,7 +6,7 @@ function Player({films}: FilmProps) {
 
   return (
     <div className="player">
-      <video src={openedFilm.url} className="player__video" poster={openedFilm.src}></video>
+      <video src={openedFilm.videoLink} className="player__video" poster={openedFilm.backgroundImage}></video>
 
       <button type="button" className="player__exit">Exit</button>
 
