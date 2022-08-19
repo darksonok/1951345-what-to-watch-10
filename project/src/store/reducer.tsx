@@ -20,12 +20,12 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(loadFilms, (state, action) => {
       state.films = action.payload;
     })
-
     .addCase(loadPromoFilm, (state, action) => {
       state.promo = action.payload;
     })
     .addCase(changeLoadingStatus, (state, action) => {
       state.isLoading = action.payload;
+    })
     .addCase(showMoreFilms, (state) => {
       state.shownFilms = state.shownFilms + NUMBER_FILMS_TO_SHOW;
     });
