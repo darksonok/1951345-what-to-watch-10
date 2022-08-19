@@ -3,7 +3,7 @@ import { TABS } from '../../const';
 import { TabsProps } from '../../types/types';
 import Details from './details/details';
 import Overview from './overview/overview';
-import Reviews from './reviews/reviews';
+/*import Reviews from './reviews/reviews';*/
 
 function Tabs({openedFilm}: TabsProps) {
   const [selectedTab, setSelectedTab] = useState(TABS.OVERVIEW);
@@ -19,9 +19,9 @@ function Tabs({openedFilm}: TabsProps) {
           <Details openedFilm={openedFilm} />
         );
       case (tab === TABS.REVIEWS):
-        return (
+        /*return (
           <Reviews reviews={openedFilm.reviews} />
-        );
+        );*/
     }
   };
 

@@ -20,11 +20,24 @@ export type Film = {
   isFavorite: boolean,
 }
 
-export type PromoFilmProps = {
-  title: string,
-  genre: string,
-  date: number,
-  src: string
+export type PromoFilm = {
+  id: number
+  name: string
+  posterImage: string
+  previewImage: string
+  backgroundImage: string
+  backgroundColor: string
+  videoLink: string
+  previewVideoLink: string
+  description: string
+  rating: number
+  scoresCount: number
+  director: string
+  starring: [string]
+  runTime: number
+  genre: string
+  released: number
+  isFavorite: boolean
 }
 
 export type PrivateRouteProps = {
@@ -38,10 +51,6 @@ export type Review = {
   text: string,
   date: string,
   rating: number
-}
-
-export type AppScreenProps = {
-  promoFilm: PromoFilmProps,
 }
 
 export type FilmProps = {
@@ -73,6 +82,7 @@ export type InitialState = {
   genre: string,
   films: Film[],
   isLoading: boolean,
+  promo: (PromoFilm | null),
 }
 
 export type GenreProps = {

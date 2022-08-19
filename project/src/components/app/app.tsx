@@ -8,11 +8,10 @@ import MainPage from '../../pages/main/main';
 import MoviePage from '../../pages/movie-page/movie-page';
 import NotFound from '../../pages/not-found/not-found';
 import Player from '../../pages/player/player';
-import { AppScreenProps } from '../../types/types';
 import PrivateRoute from '../private-route/private-route';
 import Spinner from '../spinner/spinner';
 
-function App({promoFilm}: AppScreenProps): JSX.Element {
+function App(): JSX.Element {
 
   const {films, isLoading} = useAppSelector((state) => state);
 
@@ -28,9 +27,7 @@ function App({promoFilm}: AppScreenProps): JSX.Element {
         <Route
           path={AppRoute.Main}
           element={
-            <MainPage
-              promoFilm={promoFilm}
-            />
+            <MainPage />
           }
         />
         <Route
