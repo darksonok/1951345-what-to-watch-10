@@ -1,10 +1,7 @@
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { BASE_URL, CONNECTION_TIMEOUT } from '../const';
 
-const options: {
-  baseURL: string,
-  timeout: number
-} = {
+const options: AxiosRequestConfig = {
   baseURL: BASE_URL,
   timeout: CONNECTION_TIMEOUT
 };
