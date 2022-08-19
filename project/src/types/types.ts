@@ -38,6 +38,7 @@ export type PromoFilm = {
   genre: string
   released: number
   isFavorite: boolean
+
 }
 
 export type PrivateRouteProps = {
@@ -83,6 +84,7 @@ export type InitialState = {
   films: Film[],
   isLoading: boolean,
   promo: (PromoFilm | null),
+  shownFilms: number,
 }
 
 export type GenreProps = {
@@ -90,3 +92,5 @@ export type GenreProps = {
   activeGenre: string,
   onGenreClick: (genre: string) => void;
 }
+
+

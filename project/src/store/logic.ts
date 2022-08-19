@@ -1,4 +1,4 @@
-import { DEFAULT_GENRE } from '../const';
+import { DEFAULT_GENRE, NUMBER_FILMS_TO_SHOW } from '../const';
 import { State } from '../types/state';
 import { Film } from '../types/types';
 import { getFilmGenres } from '../utils';
@@ -13,11 +13,14 @@ const filterFilmsByGenre = (state: State) =>
 
 const getGenres = (state: State) => getFilmGenres(state.films);
 
+const showMoreFilms = (state: State) => (state.shownFilms += NUMBER_FILMS_TO_SHOW);
+
 export {
   getActiveGenre,
   getFilteredFilms,
   filterFilmsByGenre,
   getGenres,
+  showMoreFilms
 };
 
 

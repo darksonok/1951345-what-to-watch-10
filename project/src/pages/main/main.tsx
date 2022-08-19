@@ -1,16 +1,26 @@
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { FilmsList } from '../../components/films-list/films-list';
 import GenreList from '../../components/genre-list/genre-list';
 import Logo from '../../components/logo/logo';
+import ShowMoreButton from '../../components/show-more-button/show-more-button';
 import { AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
+import { showMoreFilms } from '../../store/actions';
 import { filterFilmsByGenre } from '../../store/logic';
 
 function MainPage (): JSX.Element {
 
   const navigate = useNavigate();
-  const films = useAppSelector(filterFilmsByGenre);
+
   const promoFilm = useAppSelector((state) => state.promo);
+  const dispatch = useDispatch();
+  const numberOfShownFilms = useAppSelector((state) => state.shownFilms);
+  const allFilms = useAppSelector(filterFilmsByGenre);
+  const films = useAppSelector(filterFilmsByGenre).slice(0, numberOfShownFilms);
+  const handleShowMore = () => {
+    dispatch(showMoreFilms(numberOfShownFilms));
+  };
 
   return (
     <>
@@ -52,7 +62,11 @@ function MainPage (): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <button
+                  className="btn btn--play film-card__button"
+                  type="button"
+                  onClick={() => navigate(`/films/${promoFilm.id}`)}
+                >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -88,7 +102,7 @@ function MainPage (): JSX.Element {
           </div>
 
           <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
+            {allFilms.length > films.length && <ShowMoreButton onClick={handleShowMore} />}
           </div>
         </section>
 

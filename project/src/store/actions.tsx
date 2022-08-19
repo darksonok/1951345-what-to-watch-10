@@ -12,3 +12,9 @@ export const changeLoadingStatus = createAction('data/loadingStatus', (isLoading
 }));
 
 export const loadPromoFilm = createAction<PromoFilm>('data/loadPromoFilm');
+
+export const showMoreFilms = createAction('/films/showMore', (numberOfShownFilms) => ({
+  payload: numberOfShownFilms
+}));
+
+
