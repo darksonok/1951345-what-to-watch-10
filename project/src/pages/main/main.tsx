@@ -8,11 +8,12 @@ import { AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
 import { showMoreFilms } from '../../store/actions';
 import { filterFilmsByGenre } from '../../store/logic';
-import { AppScreenProps } from '../../types/types';
 
-function MainPage ({promoFilm}: AppScreenProps): JSX.Element {
+function MainPage (): JSX.Element {
 
   const navigate = useNavigate();
+
+  const promoFilm = useAppSelector((state) => state.promo);
   const dispatch = useDispatch();
   const numberOfShownFilms = useAppSelector((state) => state.shownFilms);
   const allFilms = useAppSelector(filterFilmsByGenre);
@@ -21,12 +22,11 @@ function MainPage ({promoFilm}: AppScreenProps): JSX.Element {
     dispatch(showMoreFilms(numberOfShownFilms));
   };
 
-
   return (
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={promoFilm.src} alt={promoFilm.title} />
+          <img src={promoFilm?.backgroundImage} alt={promoFilm?.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -51,14 +51,14 @@ function MainPage ({promoFilm}: AppScreenProps): JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={promoFilm.src} alt={promoFilm.title} width="218" height="327" />
+              <img src={promoFilm?.posterImage} alt={promoFilm?.name} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{promoFilm.title}</h2>
+              <h2 className="film-card__title">{promoFilm?.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{promoFilm.genre}</span>
-                <span className="film-card__year">{promoFilm.date}</span>
+                <span className="film-card__genre">{promoFilm?.genre}</span>
+                <span className="film-card__year">{promoFilm?.released}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -82,7 +82,7 @@ function MainPage ({promoFilm}: AppScreenProps): JSX.Element {
                   </svg>
                   <span>My list</span>
                   <span className="film-card__count">
-                    {films.filter((film) => film.isFavourite === true).length}
+                    {films.filter((film) => film.isFavorite === true).length}
                   </span>
                 </button>
               </div>

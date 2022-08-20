@@ -5,7 +5,7 @@ import { AppRoute } from '../../const';
 import { Film, FilmProps } from '../../types/types';
 
 function Favourites({films}: FilmProps) {
-  const favouriteFilms: Film[] = films.filter((film) => film.isFavourite);
+  const favouriteFilms: Film[] = films.filter((film) => film.isFavorite);
 
   return (
     <div className="user-page">

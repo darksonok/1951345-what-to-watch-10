@@ -3,13 +3,11 @@ import { TABS } from '../../const';
 import { TabsProps } from '../../types/types';
 import Details from './details/details';
 import Overview from './overview/overview';
-import Reviews from './reviews/reviews';
 
 function Tabs({openedFilm}: TabsProps) {
-
   const [selectedTab, setSelectedTab] = useState(TABS.OVERVIEW);
   const renderSwitch = (tab: string) => {
-    const totalRating = (openedFilm.reviews.reduce((r,i) => r + i.rating, 0) / (openedFilm.reviews.length || 1)).toFixed(1);
+    const totalRating = (openedFilm.rating).toFixed(1);
     switch(true){
       case (tab === TABS.OVERVIEW):
         return (
@@ -20,9 +18,6 @@ function Tabs({openedFilm}: TabsProps) {
           <Details openedFilm={openedFilm} />
         );
       case (tab === TABS.REVIEWS):
-        return (
-          <Reviews reviews={openedFilm.reviews} />
-        );
     }
   };
 

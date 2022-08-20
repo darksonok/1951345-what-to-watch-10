@@ -11,7 +11,7 @@ function Details ({openedFilm}: TabsProps) {
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Starring</strong>
           <span className="film-card__details-value">
-            {openedFilm.staring }
+            {openedFilm.starring }
           </span>
         </p>
       </div>
@@ -27,7 +27,7 @@ function Details ({openedFilm}: TabsProps) {
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Released</strong>
-          <span className="film-card__details-value">{openedFilm.date}</span>
+          <span className="film-card__details-value">{openedFilm.released}</span>
         </p>
       </div>
     </div>

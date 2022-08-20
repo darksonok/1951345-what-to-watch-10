@@ -23,9 +23,9 @@ function VideoPreviewPlayer({ film }: VideoPlayerProps):JSX.Element {
   return (
     <video
       ref={videoRef}
-      src={film.url}
+      src={film.previewVideoLink}
       className="player__video"
-      poster={film.src}
+      poster={film.previewImage}
       muted
     />
   );

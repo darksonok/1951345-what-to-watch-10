@@ -1,26 +1,44 @@
 import { AuthorizationStatus } from '../const';
 
 export type Film = {
-  src: string,
-  title: string,
   id: number,
-  isFavourite: boolean,
-  date: number,
-  genre: string,
+  name: string,
+  posterImage: string,
+  previewImage: string,
+  backgroundImage: string,
+  backgroundColor: string,
+  videoLink: string,
+  previewVideoLink: string,
   description: string,
+  rating: number,
+  scoresCount: number,
   director: string,
-  staring: string,
-  url: string,
+  starring: [string],
   runTime: number,
-  reviews: Review[]
+  genre: string,
+  released: number,
+  isFavorite: boolean,
 }
 
-export type PromoFilmProps = {
-  title: string,
-  genre: string,
-  date: number,
-  src: string,
+export type PromoFilm = {
   id: number
+  name: string
+  posterImage: string
+  previewImage: string
+  backgroundImage: string
+  backgroundColor: string
+  videoLink: string
+  previewVideoLink: string
+  description: string
+  rating: number
+  scoresCount: number
+  director: string
+  starring: [string]
+  runTime: number
+  genre: string
+  released: number
+  isFavorite: boolean
+
 }
 
 export type PrivateRouteProps = {
@@ -34,11 +52,6 @@ export type Review = {
   text: string,
   date: string,
   rating: number
-}
-
-export type AppScreenProps = {
-  promoFilm: PromoFilmProps,
-  films: Film[]
 }
 
 export type FilmProps = {
@@ -69,6 +82,8 @@ export type ReviewsProps = {
 export type InitialState = {
   genre: string,
   films: Film[],
+  isLoading: boolean,
+  promo: (PromoFilm | null),
   shownFilms: number,
 }
 

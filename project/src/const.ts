@@ -7,6 +7,11 @@ export enum AppRoute {
   Player = '/player/:id'
 }
 
+export enum APIRoute {
+  Films = '/films',
+  Promo = '/promo'
+}
+
 export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
@@ -46,7 +51,13 @@ const HUMANIZE_RATION_OPTIONS = {
 
 const DEFAULT_GENRE = 'All genres';
 
+
+const BASE_URL = 'https://10.react.pages.academy/wtw';
+
+const CONNECTION_TIMEOUT = 5000;
+
 const NUMBER_FILMS_TO_SHOW = 8;
+
 
 export {
   RATING_VALUES,
@@ -56,5 +67,8 @@ export {
   NUMBER_OF_SIMILAR_FILMS_IN_FILM_PAGE,
   HUMANIZE_RATION_OPTIONS,
   DEFAULT_GENRE,
+  BASE_URL,
+  CONNECTION_TIMEOUT,
   NUMBER_FILMS_TO_SHOW,
+
 };

@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
+import { useAppSelector } from '../../hooks';
 import AddReview from '../../pages/add-review/add-review';
 import Authorization from '../../pages/authorization/authorization';
 import Favourites from '../../pages/favourites/favourites';
@@ -7,20 +8,26 @@ import MainPage from '../../pages/main/main';
 import MoviePage from '../../pages/movie-page/movie-page';
 import NotFound from '../../pages/not-found/not-found';
 import Player from '../../pages/player/player';
-import { AppScreenProps } from '../../types/types';
 import PrivateRoute from '../private-route/private-route';
+import Spinner from '../spinner/spinner';
 
-function App({promoFilm, films}: AppScreenProps): JSX.Element {
+function App(): JSX.Element {
+
+  const {films, isLoading} = useAppSelector((state) => state);
+
+  if(isLoading) {
+    return (
+      <Spinner />
+    );
+  }
+
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
           element={
-            <MainPage
-              promoFilm={promoFilm}
-              films={films}
-            />
+            <MainPage />
           }
         />
         <Route

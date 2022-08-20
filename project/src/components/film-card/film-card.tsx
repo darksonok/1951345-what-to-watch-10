@@ -22,11 +22,11 @@ function FilmCard({ film }: FilmCardProps): JSX.Element {
             <VideoPreviewPlayer
               film={film}
             /> :
-            <img src={film.src} alt={film.title} width="280" height="175" />
+            <img src={film.previewImage} alt={film.name} width="280" height="175" />
         }
       </div>
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">{film.title}</a>
+        <a className="small-film-card__link" href="film-page.html">{film.name}</a>
       </h3>
     </article>
   );}
