@@ -9,7 +9,9 @@ export enum AppRoute {
 
 export enum APIRoute {
   Films = '/films',
-  Promo = '/promo'
+  Promo = '/promo',
+  Authorization = '/login',
+  Logout = '/logout',
 }
 
 export enum AuthorizationStatus {
@@ -58,6 +60,11 @@ const CONNECTION_TIMEOUT = 5000;
 
 const NUMBER_FILMS_TO_SHOW = 8;
 
+const TIMEOUT_SHOW_ERROR = 2000;
+
+const REG_EXP_FOR_VALIDATE_EMAIL = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+const REG_EXP_FOR_VALIDATE_PASSWORD = /^\S*$/;
 
 export {
   RATING_VALUES,
@@ -70,5 +77,7 @@ export {
   BASE_URL,
   CONNECTION_TIMEOUT,
   NUMBER_FILMS_TO_SHOW,
-
+  REG_EXP_FOR_VALIDATE_EMAIL,
+  REG_EXP_FOR_VALIDATE_PASSWORD,
+  TIMEOUT_SHOW_ERROR,
 };

@@ -1,5 +1,3 @@
-import { AuthorizationStatus } from '../const';
-
 export type Film = {
   id: number,
   name: string,
@@ -42,7 +40,6 @@ export type PromoFilm = {
 }
 
 export type PrivateRouteProps = {
-  authorizationStatus: AuthorizationStatus;
   children: JSX.Element;
 }
 
@@ -85,6 +82,9 @@ export type InitialState = {
   isLoading: boolean,
   promo: (PromoFilm | null),
   shownFilms: number,
+  authorizationStatus:string,
+  user: UserData | null,
+  error: string | null,
 }
 
 export type GenreProps = {
@@ -93,4 +93,13 @@ export type GenreProps = {
   onGenreClick: (genre: string) => void;
 }
 
+export type AuthorizationData = {
+  email: string,
+  password: string,
+}
 
+export type UserData = {
+  email: string,
+  token: string,
+  avatarUrl?: string,
+}

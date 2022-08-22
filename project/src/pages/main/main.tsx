@@ -1,10 +1,12 @@
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FilmsList } from '../../components/films-list/films-list';
 import GenreList from '../../components/genre-list/genre-list';
 import Logo from '../../components/logo/logo';
 import ShowMoreButton from '../../components/show-more-button/show-more-button';
-import { AppRoute } from '../../const';
+import Guest from '../../components/user-info/guest/guest';
+import UserInfo from '../../components/user-info/user-info';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppSelector } from '../../hooks';
 import { showMoreFilms } from '../../store/actions';
 import { filterFilmsByGenre } from '../../store/logic';
@@ -21,6 +23,21 @@ function MainPage (): JSX.Element {
   const handleShowMore = () => {
     dispatch(showMoreFilms(numberOfShownFilms));
   };
+  const authorizationsStatus = useAppSelector((state) => state.authorizationStatus);
+  const userInfo = useAppSelector((state) => state.user);
+
+  const renderAuthorizationStatusSwitch = () => {
+    switch(true){
+      case authorizationsStatus === AuthorizationStatus.Auth:
+        return (
+          <UserInfo userInfo={userInfo} />
+        );
+      case authorizationsStatus === AuthorizationStatus.NoAuth:
+        return (
+          <Guest />
+        );
+    }
+  };
 
   return (
     <>
@@ -35,17 +52,7 @@ function MainPage (): JSX.Element {
           <div className="logo">
             <Logo />
           </div>
-
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </li>
-            <li className="user-block__item">
-              <Link className="user-block__link" to={AppRoute.SignIn}>Sign out</Link>
-            </li>
-          </ul>
+          {renderAuthorizationStatusSwitch()}
         </header>
 
         <div className="film-card__wrap">
@@ -65,7 +72,7 @@ function MainPage (): JSX.Element {
                 <button
                   className="btn btn--play film-card__button"
                   type="button"
-                  onClick={() => navigate(`/films/${promoFilm.id}`)}
+                  onClick={() => navigate(`/films/${promoFilm?.id}`)}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>

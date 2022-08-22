@@ -1,4 +1,4 @@
-import { HUMANIZE_RATION_OPTIONS } from './const';
+import { HUMANIZE_RATION_OPTIONS, REG_EXP_FOR_VALIDATE_EMAIL, REG_EXP_FOR_VALIDATE_PASSWORD } from './const';
 import { Film } from './types/types';
 
 const huminizaRAting = (rating: number) => {
@@ -22,7 +22,19 @@ const huminizaRAting = (rating: number) => {
 
 const getFilmGenres = (filmList: Film[]) => ['All genres', ...new Set(filmList.map((film) => film.genre))];
 
+
+const validateEmail = (email: string) => email
+  .toLowerCase()
+  .match(
+    REG_EXP_FOR_VALIDATE_EMAIL
+  );
+
+const validatePassword = (password: string) => password
+  .match(REG_EXP_FOR_VALIDATE_PASSWORD);
+
 export {
   huminizaRAting,
   getFilmGenres,
+  validateEmail,
+  validatePassword,
 };

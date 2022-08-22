@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { InitialState } from '../types/types';
-import { changeGenreAction, changeLoadingStatus, loadFilms, loadPromoFilm, showMoreFilms } from './actions';
-import { NUMBER_FILMS_TO_SHOW } from '../const';
+import { changeAuthorizationStatus, changeGenreAction, changeLoadingStatus, loadFilms, loadPromoFilm, saveUserData, setError, showMoreFilms } from './actions';
+import { AuthorizationStatus, NUMBER_FILMS_TO_SHOW } from '../const';
 
 export const initialState: InitialState = {
   genre: 'All genres',
@@ -9,6 +9,9 @@ export const initialState: InitialState = {
   isLoading: true,
   promo: null,
   shownFilms: NUMBER_FILMS_TO_SHOW,
+  authorizationStatus: AuthorizationStatus.Unknown,
+  user: null,
+  error: null,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -28,6 +31,15 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(showMoreFilms, (state) => {
       state.shownFilms = state.shownFilms + NUMBER_FILMS_TO_SHOW;
+    })
+    .addCase(changeAuthorizationStatus, (state, action) => {
+      state.authorizationStatus = action.payload;
+    })
+    .addCase(saveUserData, (state, action) => {
+      state.user = action.payload;
+    })
+    .addCase(setError, (state, action) => {
+      state.error = action.payload;
     });
 });
 

@@ -17,4 +17,13 @@ export const showMoreFilms = createAction('/films/showMore', (numberOfShownFilms
   payload: numberOfShownFilms
 }));
 
+export const changeAuthorizationStatus = createAction('user/authorization', (authorizationStatus) => ({
+  payload: authorizationStatus
+}));
+
+export const saveUserData = createAction('user/saveUserData', (userData) => ({
+  payload: userData
+}));
+
+export const setError = createAction<string | null>('app/setError');
 
