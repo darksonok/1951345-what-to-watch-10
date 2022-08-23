@@ -44,11 +44,14 @@ export type PrivateRouteProps = {
 }
 
 export type Review = {
-  id: number,
-  author: string,
-  text: string,
-  date: string,
+  comment: string
+  date: string
+  id: number
   rating: number
+  user: {
+  id: number
+  name: string
+  }
 }
 
 export type FilmProps = {
@@ -73,7 +76,7 @@ export type OverviewProps = {
 }
 
 export type ReviewsProps = {
-  reviews: Review[]
+  id: number,
 }
 
 export type InitialState = {
@@ -85,6 +88,7 @@ export type InitialState = {
   authorizationStatus:string,
   user: UserData | null,
   error: string | null,
+  openedFilm: Film | null,
 }
 
 export type GenreProps = {

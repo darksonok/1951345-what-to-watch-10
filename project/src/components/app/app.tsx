@@ -43,9 +43,7 @@ function App(): JSX.Element {
         <Route
           path={AppRoute.Film}
           element={
-            <MoviePage
-              films={films}
-            />
+            <MoviePage />
           }
         />
         <Route
@@ -70,6 +68,10 @@ function App(): JSX.Element {
         />
         <Route
           path="*"
+          element={<NotFound />}
+        />
+        <Route
+          path={AppRoute.NotFound}
           element={<NotFound />}
         />
       </Routes>
