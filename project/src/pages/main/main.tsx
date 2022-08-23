@@ -2,11 +2,10 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { FilmsList } from '../../components/films-list/films-list';
 import GenreList from '../../components/genre-list/genre-list';
+import Header from '../../components/header/header';
 import Logo from '../../components/logo/logo';
 import ShowMoreButton from '../../components/show-more-button/show-more-button';
-import Guest from '../../components/user-info/guest/guest';
-import UserInfo from '../../components/user-info/user-info';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
 import { showMoreFilms } from '../../store/actions';
 import { filterFilmsByGenre } from '../../store/logic';
@@ -23,21 +22,6 @@ function MainPage (): JSX.Element {
   const handleShowMore = () => {
     dispatch(showMoreFilms(numberOfShownFilms));
   };
-  const authorizationsStatus = useAppSelector((state) => state.authorizationStatus);
-  const userInfo = useAppSelector((state) => state.user);
-
-  const renderAuthorizationStatusSwitch = () => {
-    switch(true){
-      case authorizationsStatus === AuthorizationStatus.Auth:
-        return (
-          <UserInfo userInfo={userInfo} />
-        );
-      case authorizationsStatus === AuthorizationStatus.NoAuth:
-        return (
-          <Guest />
-        );
-    }
-  };
 
   return (
     <>
@@ -48,12 +32,7 @@ function MainPage (): JSX.Element {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <header className="page-header film-card__head">
-          <div className="logo">
-            <Logo />
-          </div>
-          {renderAuthorizationStatusSwitch()}
-        </header>
+        <Header />
 
         <div className="film-card__wrap">
           <div className="film-card__info">

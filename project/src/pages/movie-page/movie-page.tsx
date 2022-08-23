@@ -2,10 +2,9 @@ import { StatusCodes } from 'http-status-codes';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import FilmCard from '../../components/film-card/film-card';
+import Header from '../../components/header/header';
 import Logo from '../../components/logo/logo';
 import Tabs from '../../components/tabs/tabs';
-import Guest from '../../components/user-info/guest/guest';
-import UserInfo from '../../components/user-info/user-info';
 import { APIRoute, AppRoute, AuthorizationStatus, NUMBER_OF_SIMILAR_FILMS_IN_FILM_PAGE } from '../../const';
 import { useAppSelector } from '../../hooks';
 import api from '../../services/api';
@@ -19,20 +18,6 @@ function MoviePage() {
   const [similarFilms, setSimilarFilms] = useState({} as Film[]);
   const navigate = useNavigate();
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const userInfo = useAppSelector((state) => state.user);
-
-  const renderAuthorizationStatusSwitch = () => {
-    switch(true){
-      case authorizationStatus === AuthorizationStatus.Auth:
-        return (
-          <UserInfo userInfo={userInfo} />
-        );
-      case authorizationStatus === AuthorizationStatus.NoAuth:
-        return (
-          <Guest />
-        );
-    }
-  };
 
   useEffect(() => {
 
@@ -78,12 +63,7 @@ function MoviePage() {
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <header className="page-header film-card__head">
-            <div className="logo">
-              <Logo />
-            </div>
-            {renderAuthorizationStatusSwitch()}
-          </header>
+          <Header />
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
@@ -130,7 +110,9 @@ function MoviePage() {
             <div className="film-card__poster film-card__poster--big">
               <img src={openedFilm.posterImage} alt={openedFilm.name} width="218" height="327" />
             </div>
-            {!isFilmLoading && openedFilm && <Tabs openedFilm={openedFilm} />}
+            {!isFilmLoading &&
+             openedFilm &&
+             <Tabs openedFilm={openedFilm} />}
           </div>
         </div>
       </section>

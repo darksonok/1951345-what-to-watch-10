@@ -68,6 +68,10 @@ const REG_EXP_FOR_VALIDATE_EMAIL = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s
 
 const REG_EXP_FOR_VALIDATE_PASSWORD = /^\S*$/;
 
+const REVIEW_MAX_LENGTH = 400;
+
+const REVIEW_MIN_LENGTH = 50;
+
 export {
   RATING_VALUES,
   PromoFilm,
@@ -82,4 +86,6 @@ export {
   REG_EXP_FOR_VALIDATE_EMAIL,
   REG_EXP_FOR_VALIDATE_PASSWORD,
   TIMEOUT_SHOW_ERROR,
+  REVIEW_MAX_LENGTH,
+  REVIEW_MIN_LENGTH,
 };

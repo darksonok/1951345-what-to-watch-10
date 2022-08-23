@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
 import AddReview from '../../pages/add-review/add-review';
@@ -8,6 +8,8 @@ import MainPage from '../../pages/main/main';
 import MoviePage from '../../pages/movie-page/movie-page';
 import NotFound from '../../pages/not-found/not-found';
 import Player from '../../pages/player/player';
+import browserHistory from '../../services/browser-history';
+import HistoryRouter from '../history-route/history-route';
 import PrivateRoute from '../private-route/private-route';
 import Spinner from '../spinner/spinner';
 
@@ -22,7 +24,7 @@ function App(): JSX.Element {
   }
 
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route
           path={AppRoute.Main}
@@ -75,7 +77,7 @@ function App(): JSX.Element {
           element={<NotFound />}
         />
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }
 
