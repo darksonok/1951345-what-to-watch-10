@@ -7,21 +7,18 @@ import api from '../../services/api';
 function AddReviewForm(): JSX.Element {
   const id: number = parseInt(window.location.pathname.split('/')[2], 10);
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     rating: '',
     'review-text': ''
   });
-  const navigate = useNavigate();
-
   const [isSubmitDisabled, setSubmitDisabledStatus] = useState(true);
   const [isSubmitting, setSubmittingStatus] = useState(false);
 
   useEffect(() => {
-
-    if(authorizationStatus === AuthorizationStatus.NoAuth) {
+    if (authorizationStatus === AuthorizationStatus.NoAuth) {
       navigate(AppRoute.SignIn);
     }
-
     if (
       formData['review-text'].length < REVIEW_MIN_LENGTH ||
       formData['review-text'].length > REVIEW_MAX_LENGTH ||
@@ -29,11 +26,10 @@ function AddReviewForm(): JSX.Element {
       isSubmitting
     ) {
       setSubmitDisabledStatus(true);
-    } else {
+    }else {
       setSubmitDisabledStatus(false);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [formData]);
+  }, [authorizationStatus, formData, isSubmitting, navigate]);
 
   const postReviewData = async () => {
     const payload = {

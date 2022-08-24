@@ -4,12 +4,10 @@ import api from '../../../services/api';
 import { Review, ReviewsProps } from '../../../types/types';
 
 function Reviews ({id}: ReviewsProps) {
-
   const [reviews, setReviews] = useState([] as Review[]);
   const [isReviewsLoading, setReviewsLoadingStatus] = useState(true);
 
   useEffect(() => {
-
     const fetchReviews = async () => {
       await api.get<Review[]>(`${APIRoute.Reviews}/${id}`)
         .then( ({data}) => {

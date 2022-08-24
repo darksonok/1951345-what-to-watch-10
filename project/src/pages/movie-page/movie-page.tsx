@@ -20,7 +20,6 @@ function MoviePage() {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   useEffect(() => {
-
     const fetchChosenFilm = async () => {
       await api.get<Film>(`${APIRoute.Films}/${id}`)
         .then( ({data}) => {
