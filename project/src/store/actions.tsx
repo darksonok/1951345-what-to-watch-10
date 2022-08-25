@@ -1,4 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
+import { AppRoute } from '../const';
 import { Film, PromoFilm } from '../types/types';
 
 export const changeGenreAction = createAction('films/changeGenre', (genre) => ({
@@ -27,3 +28,4 @@ export const saveUserData = createAction('user/saveUserData', (userData) => ({
 
 export const setError = createAction<string | null>('app/setError');
 
+export const redirectToRoute = createAction<AppRoute>('redirectToRoute');

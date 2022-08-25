@@ -1,21 +1,36 @@
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import FilmCard from '../../components/film-card/film-card';
+import Header from '../../components/header/header';
 import Logo from '../../components/logo/logo';
 import Tabs from '../../components/tabs/tabs';
-import { AppRoute, NUMBER_OF_SIMILAR_FILMS_IN_FILM_PAGE } from '../../const';
+import { AuthorizationStatus, NUMBER_OF_SIMILAR_FILMS_IN_FILM_PAGE } from '../../const';
 import { useAppSelector } from '../../hooks';
-import { changeGenreAction } from '../../store/actions';
-import { filterFilmsByGenre } from '../../store/logic';
-import { Film, FilmProps } from '../../types/types';
+import { fetchChosenFilm, fetchSimilarFilms } from '../../services/api';
+import { Film } from '../../types/types';
 
-function MoviePage({films}: FilmProps) {
+function MoviePage() {
   const id: number = parseInt(window.location.pathname.split('/')[2], 10);
-  const openedFilm = films.filter((film) => film.id === id)[0];
+  const [openedFilm, setOpenedFilm] = useState({} as Film);
+  const [isFilmLoading, setFilmLoadingStatus] = useState(true);
+  const [isSimilarFilmsLoading, setSimilarFilmsLoadingStatus] = useState(true);
+  const [similarFilms, setSimilarFilms] = useState({} as Film[]);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  dispatch(changeGenreAction(openedFilm.genre));
-  const similarFilms = useAppSelector(filterFilmsByGenre);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+
+  useEffect(() => {
+    fetchSimilarFilms(id, setSimilarFilmsLoadingStatus, setSimilarFilms);
+    fetchChosenFilm(id, setFilmLoadingStatus, setOpenedFilm, navigate);
+    return (() => {setOpenedFilm({} as Film); setFilmLoadingStatus(true);});
+  }, [id, navigate]);
+
+  if (isFilmLoading || isSimilarFilmsLoading) {
+    return (
+      <p>Loading data</p>
+    );
+  }
+
+
   return (
     <>
       <section className="film-card film-card--full">
@@ -26,27 +41,7 @@ function MoviePage({films}: FilmProps) {
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <header className="page-header film-card__head">
-            <div className="logo">
-              <Logo />
-            </div>
-
-            <ul className="user-block">
-              <li className="user-block__item">
-                <div className="user-block__avatar">
-                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-                </div>
-              </li>
-              <li className="user-block__item">
-                <Link
-                  className="user-block__link"
-                  to={AppRoute.SignIn}
-                >
-                  Sign out
-                </Link>
-              </li>
-            </ul>
-          </header>
+          <Header />
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
@@ -74,12 +69,15 @@ function MoviePage({films}: FilmProps) {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <Link
-                  to={`/films/${openedFilm.id}/review`}
-                  className="btn film-card__button"
-                >
-                  Add review
-                </Link>
+                {authorizationStatus === AuthorizationStatus.NoAuth ?
+                  <span className="btn film-card__button">You need to authorize to add reviews</span> :
+                  <Link
+                    to={`/films/${openedFilm.id}/review`}
+                    className="btn film-card__button"
+                  >
+                Add review
+                  </Link>}
+
               </div>
             </div>
           </div>
@@ -90,7 +88,9 @@ function MoviePage({films}: FilmProps) {
             <div className="film-card__poster film-card__poster--big">
               <img src={openedFilm.posterImage} alt={openedFilm.name} width="218" height="327" />
             </div>
-            <Tabs openedFilm={openedFilm} />
+            {!isFilmLoading &&
+             openedFilm &&
+             <Tabs openedFilm={openedFilm} />}
           </div>
         </div>
       </section>

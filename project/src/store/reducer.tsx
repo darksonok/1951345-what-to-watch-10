@@ -12,6 +12,7 @@ export const initialState: InitialState = {
   authorizationStatus: AuthorizationStatus.Unknown,
   user: null,
   error: null,
+  openedFilm: null,
 };
 
 const reducer = createReducer(initialState, (builder) => {

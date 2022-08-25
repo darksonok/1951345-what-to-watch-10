@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Header from '../../components/header/header';
 import Logo from '../../components/logo/logo';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -51,13 +52,7 @@ function Authorization() {
 
   return (
     <div className="user-page">
-      <header className="page-header user-page__head">
-        <div className="logo">
-          <Logo />
-        </div>
-
-        <h1 className="page-title user-page__title">Sign in</h1>
-      </header>
+      <Header />
 
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form" onSubmit={onSubmit}>

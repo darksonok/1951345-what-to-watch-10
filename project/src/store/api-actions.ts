@@ -76,3 +76,4 @@ export const logoutAction = createAsyncThunk<void, undefined, thunkOptions>(
     dispatch(changeAuthorizationStatus(AuthorizationStatus.NoAuth));
   },
 );
+

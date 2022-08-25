@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom';
+import AddReviewBreadcrumbs from '../../components/add-review-form/add-review-breadcrumbs';
 import AddReviewForm from '../../components/add-review-form/add-review-form';
-import Logo from '../../components/logo/logo';
-import { AppRoute } from '../../const';
+import Header from '../../components/header/header';
 import { FilmProps } from '../../types/types';
 
 function AddReview({films}: FilmProps) {
@@ -17,48 +16,7 @@ function AddReview({films}: FilmProps) {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <header className="page-header">
-          <div className="logo">
-            <Logo />
-          </div>
-
-          <nav className="breadcrumbs">
-            <ul className="breadcrumbs__list">
-              <li className="breadcrumbs__item">
-                <Link
-                  className="breadcrumbs__link"
-                  to={`/films/${openedFilm.id}`}
-                >
-                  {openedFilm.name}
-                </Link>
-              </li>
-              <li className="breadcrumbs__item">
-                <Link
-                  className="breadcrumbs__link"
-                  to={''}
-                >
-                  Add review
-                </Link>
-              </li>
-            </ul>
-          </nav>
-
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </li>
-            <li className="user-block__item">
-              <Link
-                className="user-block__link"
-                to={AppRoute.SignIn}
-              >
-                Sign out
-              </Link>
-            </li>
-          </ul>
-        </header>
+        <Header breadcrumbs={<AddReviewBreadcrumbs openedFilm={openedFilm}/>} />
 
         <div className="film-card__poster film-card__poster--small">
           <img src={openedFilm.posterImage} alt={openedFilm.name} width="218" height="327" />
