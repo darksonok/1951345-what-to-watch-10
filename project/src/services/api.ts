@@ -1,8 +1,10 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { BASE_URL, CONNECTION_TIMEOUT } from '../const';
+import { APIRoute, AppRoute, BASE_URL, CONNECTION_TIMEOUT } from '../const';
 import { getToken } from './token';
 import { StatusCodes } from 'http-status-codes';
 import { processErrorHandle } from './process-error-handle';
+import { Film, Review } from '../types/types';
+import { NavigateFunction } from 'react-router-dom';
 
 const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.BAD_REQUEST]: true,
@@ -44,3 +46,45 @@ api.interceptors.response.use(
 
 export default api;
 
+export const fetchReviews = async (
+  id:number,
+  callbackForSetLoadingStatus:React.Dispatch<React.SetStateAction<boolean>>,
+  callbackForSetData: React.Dispatch<React.SetStateAction<Review[]>>
+) => {
+  await api.get<Review[]>(`${APIRoute.Reviews}/${id}`)
+    .then( ({data}) => {
+      callbackForSetLoadingStatus(false);
+      callbackForSetData(data);
+    });
+};
+
+export const fetchChosenFilm = async (
+  id: number,
+  callbackForSetFilmLoadingStatus: React.Dispatch<React.SetStateAction<boolean>>,
+  callbackForSetOpenedFilm: React.Dispatch<React.SetStateAction<Film>>,
+  callbackForRedirect: NavigateFunction
+) => {
+  await api.get<Film>(`${APIRoute.Films}/${id}`)
+    .then( ({data}) => {
+      callbackForSetFilmLoadingStatus(false);
+      callbackForSetOpenedFilm(data);
+    },
+    (error) => {
+      if (error.response.status === StatusCodes.NOT_FOUND) {
+        callbackForRedirect(AppRoute.NotFound);
+      }
+    }
+    );
+};
+
+export const fetchSimilarFilms = async (
+  id: number,
+  callbackForSetSimilarFilmsLoadingStatus: React.Dispatch<React.SetStateAction<boolean>>,
+  callbackForSetSimilarFilms: React.Dispatch<React.SetStateAction<Film[]>>
+) => {
+  await api.get<Film[]>(`${APIRoute.Films}/${id}/similar`)
+    .then( ({data}) => {
+      callbackForSetSimilarFilmsLoadingStatus(false);
+      callbackForSetSimilarFilms(data);
+    });
+};

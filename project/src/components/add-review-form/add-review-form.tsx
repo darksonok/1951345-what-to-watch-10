@@ -1,44 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { APIRoute, AppRoute, AuthorizationStatus, RATING_VALUES, REVIEW_MAX_LENGTH, REVIEW_MIN_LENGTH } from '../../const';
-import { useAppSelector } from '../../hooks';
+import { APIRoute, RATING_VALUES, REVIEW_MAX_LENGTH, REVIEW_MIN_LENGTH } from '../../const';
+
 import api from '../../services/api';
 
 function AddReviewForm(): JSX.Element {
   const id: number = parseInt(window.location.pathname.split('/')[2], 10);
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    rating: '',
+    rating: 0,
     'review-text': ''
   });
-  const [isSubmitDisabled, setSubmitDisabledStatus] = useState(true);
   const [isSubmitting, setSubmittingStatus] = useState(false);
-
-  useEffect(() => {
-    if (authorizationStatus === AuthorizationStatus.NoAuth) {
-      navigate(AppRoute.SignIn);
-    }
-    if (
-      formData['review-text'].length < REVIEW_MIN_LENGTH ||
-      formData['review-text'].length > REVIEW_MAX_LENGTH ||
-      formData['rating'] === '' ||
-      isSubmitting
-    ) {
-      setSubmitDisabledStatus(true);
-    }else {
-      setSubmitDisabledStatus(false);
-    }
-  }, [authorizationStatus, formData, isSubmitting, navigate]);
+  const [hintMessage, setHintMessage] = useState('');
 
   const postReviewData = async () => {
     const payload = {
       comment: formData['review-text'],
       rating: Number(formData.rating)
     };
-    setSubmittingStatus(true);
     await api.post(`${APIRoute.Reviews}/${id}`, payload)
       .then(() => {
+        setSubmittingStatus(true);
         navigate(`../films/${id}`);
       });
   };
@@ -50,7 +34,9 @@ function AddReviewForm(): JSX.Element {
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    postReviewData();
+    formData['review-text'].length > REVIEW_MIN_LENGTH ?
+      postReviewData() :
+      setHintMessage(`Минимальная длина отзыва - ${REVIEW_MIN_LENGTH} символов`);
   };
 
   return (
@@ -77,6 +63,7 @@ function AddReviewForm(): JSX.Element {
           </div>
 
           <div className="add-review__text">
+            <span>{hintMessage}</span>
             <textarea
               className="add-review__textarea"
               name="review-text" id="review-text"
@@ -90,7 +77,6 @@ function AddReviewForm(): JSX.Element {
               <button
                 className="add-review__btn"
                 type="submit"
-                disabled={isSubmitDisabled}
               >
               Post
               </button>

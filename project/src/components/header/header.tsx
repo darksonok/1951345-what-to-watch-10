@@ -13,26 +13,17 @@ function Header ({breadcrumbs}: HeaderProps) {
   const authorizationsStatus = useAppSelector((state) => state.authorizationStatus);
   const userInfo = useAppSelector((state) => state.user);
 
-  const renderAuthorizationStatusSwitch = () => {
-    switch(true){
-      case authorizationsStatus === AuthorizationStatus.Auth:
-        return (
-          <UserInfo userInfo={userInfo} />
-        );
-      case authorizationsStatus === AuthorizationStatus.NoAuth:
-        return (
-          <Guest />
-        );
-    }
-  };
 
   return (
     <header className="page-header film-card__head">
       <div className="logo">
         <Logo />
       </div>
-      { breadcrumbs }
-      {renderAuthorizationStatusSwitch()}
+      {
+        authorizationsStatus === AuthorizationStatus.Auth ?
+          breadcrumbs || <UserInfo userInfo={userInfo} /> :
+          <Guest />
+      }
     </header>
   );
 }

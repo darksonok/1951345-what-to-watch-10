@@ -1,13 +1,12 @@
-import { StatusCodes } from 'http-status-codes';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import FilmCard from '../../components/film-card/film-card';
 import Header from '../../components/header/header';
 import Logo from '../../components/logo/logo';
 import Tabs from '../../components/tabs/tabs';
-import { APIRoute, AppRoute, AuthorizationStatus, NUMBER_OF_SIMILAR_FILMS_IN_FILM_PAGE } from '../../const';
+import { AuthorizationStatus, NUMBER_OF_SIMILAR_FILMS_IN_FILM_PAGE } from '../../const';
 import { useAppSelector } from '../../hooks';
-import api from '../../services/api';
+import { fetchChosenFilm, fetchSimilarFilms } from '../../services/api';
 import { Film } from '../../types/types';
 
 function MoviePage() {
@@ -20,28 +19,8 @@ function MoviePage() {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   useEffect(() => {
-    const fetchChosenFilm = async () => {
-      await api.get<Film>(`${APIRoute.Films}/${id}`)
-        .then( ({data}) => {
-          setFilmLoadingStatus(false);
-          setOpenedFilm(data);
-        },
-        (error) => {
-          if (error.response.status === StatusCodes.NOT_FOUND) {
-            navigate(AppRoute.NotFound);
-          }
-        }
-        );
-    };
-    const fetchSimilarFilms = async () => {
-      await api.get<Film[]>(`${APIRoute.Films}/${id}/similar`)
-        .then( ({data}) => {
-          setSimilarFilms(data);
-          setSimilarFilmsLoadingStatus(false);
-        });
-    };
-    fetchSimilarFilms();
-    fetchChosenFilm();
+    fetchSimilarFilms(id, setSimilarFilmsLoadingStatus, setSimilarFilms);
+    fetchChosenFilm(id, setFilmLoadingStatus, setOpenedFilm, navigate);
     return (() => {setOpenedFilm({} as Film); setFilmLoadingStatus(true);});
   }, [id, navigate]);
 

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { APIRoute } from '../../../const';
-import api from '../../../services/api';
+import { fetchReviews } from '../../../services/api';
 import { Review, ReviewsProps } from '../../../types/types';
 
 function Reviews ({id}: ReviewsProps) {
@@ -8,17 +7,10 @@ function Reviews ({id}: ReviewsProps) {
   const [isReviewsLoading, setReviewsLoadingStatus] = useState(true);
 
   useEffect(() => {
-    const fetchReviews = async () => {
-      await api.get<Review[]>(`${APIRoute.Reviews}/${id}`)
-        .then( ({data}) => {
-          setReviewsLoadingStatus(false);
-          setReviews(data);
-        });
-    };
-    fetchReviews();
+    fetchReviews(id, setReviewsLoadingStatus, setReviews);
   }, [id]);
 
-  if(isReviewsLoading) {
+  if (isReviewsLoading) {
     return (
       <p>Reviews is  loading</p>
     );
