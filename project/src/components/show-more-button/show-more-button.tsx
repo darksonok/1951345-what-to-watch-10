@@ -1,16 +1,24 @@
 type ShowMoreButtonType = {
   onClick: () => void,
+  allFilmsLength: number,
+  shownFilmLength: number,
 }
 
-function ShowMoreButton ({onClick} : ShowMoreButtonType) {
+function ShowMoreButton ({onClick, allFilmsLength, shownFilmLength} : ShowMoreButtonType): JSX.Element {
   return (
-    <button
-      className="catalog__button"
-      type="button"
-      onClick={onClick}
-    >
+    allFilmsLength > shownFilmLength
+      ?
+      <div className="catalog__more">
+        <button
+          className="catalog__button"
+          type="button"
+          onClick={onClick}
+        >
       Show more
-    </button>
+        </button>
+      </div>
+      :
+      <span></span>
   );
 }
 

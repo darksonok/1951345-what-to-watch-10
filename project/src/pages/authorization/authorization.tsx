@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
-import Logo from '../../components/logo/logo';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
@@ -52,8 +52,7 @@ function Authorization() {
 
   return (
     <div className="user-page">
-      <Header />
-
+      <Header className={'user-page__head'}/>
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form" onSubmit={onSubmit}>
           {
@@ -109,16 +108,7 @@ function Authorization() {
           </div>
         </form>
       </div>
-
-      <footer className="page-footer">
-        <div className="logo">
-          <Logo />
-        </div>
-
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

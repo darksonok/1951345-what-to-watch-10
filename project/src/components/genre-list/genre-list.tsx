@@ -1,12 +1,12 @@
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../hooks';
 import { changeGenreAction } from '../../store/actions';
-import { getGenres } from '../../store/logic';
+import { getActiveGenre, getGenres } from '../../store/selectors';
 import Genre from '../genre/genre';
 
 function GenreList (): JSX.Element {
 
-  const activeGenre = useAppSelector((state) => state.genre);
+  const activeGenre = useAppSelector(getActiveGenre);
   const genres = useAppSelector(getGenres);
 
   const dispatch = useDispatch();

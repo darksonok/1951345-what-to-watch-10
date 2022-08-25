@@ -1,4 +1,5 @@
-import { HUMANIZE_RATION_OPTIONS, REG_EXP_FOR_VALIDATE_EMAIL, REG_EXP_FOR_VALIDATE_PASSWORD } from './const';
+import { HUMANIZE_RATION_OPTIONS, NUMBER_FILMS_TO_SHOW, REG_EXP_FOR_VALIDATE_EMAIL, REG_EXP_FOR_VALIDATE_PASSWORD } from './const';
+import { State } from './types/state';
 import { Film } from './types/types';
 
 const huminizaRAting = (rating: number) => {
@@ -32,9 +33,12 @@ const validateEmail = (email: string) => email
 const validatePassword = (password: string) => password
   .match(REG_EXP_FOR_VALIDATE_PASSWORD);
 
+const showMoreFilms = (state: State) => (state.shownFilms += NUMBER_FILMS_TO_SHOW);
+
 export {
   huminizaRAting,
   getFilmGenres,
   validateEmail,
   validatePassword,
+  showMoreFilms,
 };
