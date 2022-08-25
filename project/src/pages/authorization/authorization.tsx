@@ -23,7 +23,6 @@ function Authorization() {
   const showEmailError = formData.email !== '' && !validateEmail(formData.email);
   const showPasswordError = formData.password !== '' && !validatePassword(formData.password);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     authorizationStatus === AuthorizationStatus.Auth && navigate(AppRoute.Main);
 
@@ -38,7 +37,7 @@ function Authorization() {
     } else {
       setSubmitDisabled(true);
     }
-  });
+  }, [authorizationStatus, navigate, showEmailError, showPasswordError, formData.email, formData.password]);
 
   const onChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const {type, value} = evt.target;
