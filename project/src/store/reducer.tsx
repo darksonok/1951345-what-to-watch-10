@@ -1,11 +1,12 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { InitialState } from '../types/types';
-import { changeAuthorizationStatus, changeGenreAction, changeLoadingStatus, loadFilms, loadPromoFilm, saveUserData, setError, showMoreFilms } from './actions';
+import { changeAuthorizationStatus, changeGenreAction, changeLoadingStatus, loadFavoriteFilms, loadFilms, loadPromoFilm, saveUserData, setError, showMoreFilms } from './actions';
 import { AuthorizationStatus, NUMBER_FILMS_TO_SHOW } from '../const';
 
 export const initialState: InitialState = {
   genre: 'All genres',
   films: [],
+  filteredFilms: [],
   isLoading: true,
   promo: null,
   shownFilms: NUMBER_FILMS_TO_SHOW,
@@ -13,6 +14,7 @@ export const initialState: InitialState = {
   user: null,
   error: null,
   openedFilm: null,
+  favoriteFilms: []
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -41,6 +43,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setError, (state, action) => {
       state.error = action.payload;
+    })
+    .addCase(loadFavoriteFilms, (state, action) => {
+      state.favoriteFilms = action.payload;
     });
 });
 

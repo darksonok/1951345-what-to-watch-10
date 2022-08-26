@@ -82,6 +82,7 @@ export type ReviewsProps = {
 export type InitialState = {
   genre: string,
   films: Film[],
+  filteredFilms: Film[],
   isLoading: boolean,
   promo: (PromoFilm | null),
   shownFilms: number,
@@ -89,6 +90,7 @@ export type InitialState = {
   user: UserData | null,
   error: string | null,
   openedFilm: Film | null,
+  favoriteFilms: Film[]
 }
 
 export type GenreProps = {

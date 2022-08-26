@@ -6,6 +6,7 @@ import App from './components/app/app';
 import ErrorMessage from './components/error-message/error-message';
 import {
   checkAuthAction,
+  fetchFavoriteFilmsAction,
   fetchFilmsAction,
   fetchPromoFilmsAction
 } from './store/api-actions';
@@ -16,6 +17,7 @@ const root = ReactDOM.createRoot(
 
 store.dispatch(fetchFilmsAction());
 store.dispatch(fetchPromoFilmsAction());
+store.dispatch(fetchFavoriteFilmsAction());
 store.dispatch(checkAuthAction());
 
 root.render(

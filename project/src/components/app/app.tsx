@@ -15,7 +15,7 @@ import Spinner from '../spinner/spinner';
 
 function App(): JSX.Element {
 
-  const {films, isLoading} = useAppSelector((state) => state);
+  const {isLoading} = useAppSelector((state) => state);
 
   if(isLoading) {
     return (
@@ -36,9 +36,7 @@ function App(): JSX.Element {
           path={AppRoute.MyList}
           element={
             <PrivateRoute>
-              <Favourites
-                films={films}
-              />
+              <Favourites />
             </PrivateRoute>
           }
         />
@@ -52,9 +50,7 @@ function App(): JSX.Element {
           path={AppRoute.AddReview}
           element={
             <PrivateRoute>
-              <AddReview
-                films={films}
-              />
+              <AddReview />
             </PrivateRoute>
           }
         />
@@ -65,9 +61,7 @@ function App(): JSX.Element {
         <Route
           path={AppRoute.Player}
           element={
-            <Player
-              films={films}
-            />
+            <Player />
           }
         />
         <Route
