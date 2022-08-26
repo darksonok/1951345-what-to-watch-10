@@ -13,7 +13,8 @@ export enum APIRoute {
   Promo = '/promo',
   Authorization = '/login',
   Logout = '/logout',
-  Reviews = '/comments'
+  Reviews = '/comments',
+  Favurite = '/favorite',
 }
 
 export enum AuthorizationStatus {

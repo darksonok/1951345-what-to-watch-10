@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
-import Logo from '../../components/logo/logo';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
@@ -23,7 +23,6 @@ function Authorization() {
   const showEmailError = formData.email !== '' && !validateEmail(formData.email);
   const showPasswordError = formData.password !== '' && !validatePassword(formData.password);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     authorizationStatus === AuthorizationStatus.Auth && navigate(AppRoute.Main);
 
@@ -38,7 +37,7 @@ function Authorization() {
     } else {
       setSubmitDisabled(true);
     }
-  });
+  }, [authorizationStatus, navigate, showEmailError, showPasswordError, formData.email, formData.password]);
 
   const onChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const {type, value} = evt.target;
@@ -52,8 +51,7 @@ function Authorization() {
 
   return (
     <div className="user-page">
-      <Header />
-
+      <Header className={'user-page__head'}/>
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form" onSubmit={onSubmit}>
           {
@@ -109,16 +107,7 @@ function Authorization() {
           </div>
         </form>
       </div>
-
-      <footer className="page-footer">
-        <div className="logo">
-          <Logo />
-        </div>
-
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

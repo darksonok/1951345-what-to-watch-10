@@ -1,21 +1,23 @@
 import { AuthorizationStatus } from '../../const';
 import { useAppSelector } from '../../hooks';
+import { getAuthorizationStatus, getUserInfo } from '../../store/selectors';
 import Logo from '../logo/logo';
 import Guest from '../user-info/guest/guest';
 import UserInfo from '../user-info/user-info';
 
 type HeaderProps = {
   breadcrumbs?: JSX.Element,
+  className?: string,
 }
 
-function Header ({breadcrumbs}: HeaderProps) {
+function Header ({breadcrumbs, className}: HeaderProps) {
 
-  const authorizationsStatus = useAppSelector((state) => state.authorizationStatus);
-  const userInfo = useAppSelector((state) => state.user);
+  const authorizationsStatus = useAppSelector(getAuthorizationStatus);
+  const userInfo = useAppSelector(getUserInfo);
 
 
   return (
-    <header className="page-header film-card__head">
+    <header className={`page-header ${className}`}>
       <div className="logo">
         <Logo />
       </div>

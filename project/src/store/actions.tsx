@@ -29,3 +29,5 @@ export const saveUserData = createAction('user/saveUserData', (userData) => ({
 export const setError = createAction<string | null>('app/setError');
 
 export const redirectToRoute = createAction<AppRoute>('redirectToRoute');
+
+export const loadFavoriteFilms = createAction<Film[]>('data/loadFavoriteFilms');

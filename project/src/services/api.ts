@@ -88,3 +88,4 @@ export const fetchSimilarFilms = async (
       callbackForSetSimilarFilms(data);
     });
 };
+

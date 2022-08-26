@@ -5,7 +5,7 @@ import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
 import { dropToken, saveToken } from '../services/token';
 import { AppDispatch, State } from '../types/state';
 import { AuthorizationData, Film, PromoFilm, UserData } from '../types/types';
-import { changeAuthorizationStatus, changeLoadingStatus, loadFilms, loadPromoFilm, saveUserData, setError } from './actions';
+import { changeAuthorizationStatus, changeLoadingStatus, loadFavoriteFilms, loadFilms, loadPromoFilm, saveUserData, setError } from './actions';
 
 type thunkOptions = {
   dispatch: AppDispatch,
@@ -77,3 +77,11 @@ export const logoutAction = createAsyncThunk<void, undefined, thunkOptions>(
   },
 );
 
+export const fetchFavoriteFilmsAction = createAsyncThunk<void, undefined, thunkOptions>(
+  'data/fetchFilms',
+  async (_arg, {dispatch, extra: api}) => {
+    const {data} = await api.get<Film[]>(APIRoute.Favurite);
+    dispatch(changeLoadingStatus(false));
+    dispatch(loadFavoriteFilms(data));
+  }
+);
