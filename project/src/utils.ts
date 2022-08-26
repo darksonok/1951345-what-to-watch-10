@@ -32,9 +32,16 @@ const validateEmail = (email: string) => email
 const validatePassword = (password: string) => password
   .match(REG_EXP_FOR_VALIDATE_PASSWORD);
 
+const humanizeTime = (time: number) => (
+  time > 3600
+    ? (`-${Math.floor(time / 3600)}:${Math.floor((time / 3600 - Math.floor(time / 3600)) * 60)}:${Math.floor(((time / 3600 - Math.floor(time / 3600)) * 60 - Math.floor((time / 3600 - Math.floor(time / 3600)) * 60)) * 60)}`)
+    : (`-${Math.floor(time / 60)}:${Math.floor((time / 60 - Math.floor(time / 60)) * 60)}`)
+);
+
 export {
   huminizaRAting,
   getFilmGenres,
   validateEmail,
   validatePassword,
+  humanizeTime,
 };
