@@ -3,10 +3,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Spinner from '../../components/spinner/spinner';
 import VideoPlayerControls from '../../components/video-player-controls/video-player-controls';
 import { fetchChosenFilm } from '../../services/api';
-import { Film, FilmProps } from '../../types/types';
+import { Film } from '../../types/types';
 import { humanizeTime } from '../../utils';
 
-function Player({films}: FilmProps) {
+function Player() {
   const { id } = useParams();
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [openedFilm, setOpenedFilm] = useState({} as Film);
@@ -47,17 +47,22 @@ function Player({films}: FilmProps) {
     videoRef.current.requestFullscreen();
   };
 
-  const getVideoEstimateTime = () => Math.floor(Number(videoRef.current?.duration)) - Math.floor(Number(videoRef.current?.currentTime));
+  const getVideoEstimateTime = () => (
+    Math.floor(Number(videoRef.current?.duration))
+    -
+    Math.floor(Number(videoRef.current?.currentTime)));
+
   const getVieoProgress = () => {
-    if(videoRef.current === null) {
+    if (videoRef.current === null) {
       return 0;
     }
     return Number(videoRef.current?.buffered.end(0))
            / (Number(videoRef.current?.duration))
            * 100;
   };
+
   const getVideoProcessPosition = () => {
-    if(videoRef.current === null) {
+    if (videoRef.current === null) {
       return 0;
     }
     return Number(videoRef.current?.currentTime)

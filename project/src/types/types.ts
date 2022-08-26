@@ -89,7 +89,6 @@ export type InitialState = {
   authorizationStatus:string,
   user: UserData | null,
   error: string | null,
-  openedFilm: Film | null,
   favoriteFilms: Film[]
 }
 

@@ -14,13 +14,18 @@ export enum APIRoute {
   Authorization = '/login',
   Logout = '/logout',
   Reviews = '/comments',
-  Favurite = '/favorite',
+  Favorite = '/favorite',
 }
 
 export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
+}
+
+export enum FavoriteStatus {
+  INLIST = 1,
+  NOTINLIST = 0
 }
 
 const RATING_VALUES: number[] = [1,2,3,4,5,6,7,8,9,10];

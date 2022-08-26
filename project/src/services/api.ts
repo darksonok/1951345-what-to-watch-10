@@ -1,10 +1,12 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { APIRoute, AppRoute, BASE_URL, CONNECTION_TIMEOUT } from '../const';
+import { APIRoute, AppRoute, BASE_URL, CONNECTION_TIMEOUT, FavoriteStatus } from '../const';
 import { getToken } from './token';
 import { StatusCodes } from 'http-status-codes';
 import { processErrorHandle } from './process-error-handle';
 import { Film, Review } from '../types/types';
 import { NavigateFunction } from 'react-router-dom';
+import { store } from '../store';
+import { fetchFavoriteFilmsAction } from '../store/api-actions';
 
 const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.BAD_REQUEST]: true,
@@ -89,3 +91,16 @@ export const fetchSimilarFilms = async (
     });
 };
 
+export const addToFavorites = async (
+  id: number,
+  status: number,
+  callBackForSetFavoriteStatus: React.Dispatch<React.SetStateAction<boolean>>,
+) => {
+  await api.post(`${APIRoute.Favorite}/${id}/${status}`)
+    .then( () => {
+      store.dispatch(fetchFavoriteFilmsAction());
+      status === FavoriteStatus.INLIST
+        ? callBackForSetFavoriteStatus(true)
+        : callBackForSetFavoriteStatus(false);
+    });
+};

@@ -11,7 +11,6 @@ const getPromoFilm = (state: State) => state.promo;
 const getNumberOfShownFilms = (state: State) => state.shownFilms;
 const getAuthorizationStatus = (state: State) => state.authorizationStatus;
 const getUserInfo = (state: State) => state.user;
-const getOpenedFilm = (state: State) => state.openedFilm;
 const getFavoriteFilms = (state: State) => state.favoriteFilms;
 const getGenres = (state: State) => getFilmGenres(state.films);
 
@@ -32,7 +31,6 @@ export {
   getNumberOfShownFilms,
   getAuthorizationStatus,
   getUserInfo,
-  getOpenedFilm,
   getFavoriteFilms,
 };
 
