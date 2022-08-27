@@ -1,4 +1,4 @@
-import { HUMANIZE_RATION_OPTIONS, REG_EXP_FOR_VALIDATE_EMAIL, REG_EXP_FOR_VALIDATE_PASSWORD } from './const';
+import { DEFAULT_VIDEO_PARAM_VALUE, HUMANIZE_RATION_OPTIONS, MathActions, NUMBER_OF_PERCENTS_IN_WHOLE, REG_EXP_FOR_VALIDATE_EMAIL, REG_EXP_FOR_VALIDATE_PASSWORD, SECONDS_IN_HOUR, SECONDS_IN_MINNUTE } from './const';
 import { Film } from './types/types';
 
 const huminizaRAting = (rating: number) => {
@@ -32,13 +32,27 @@ const validateEmail = (email: string) => email
 const validatePassword = (password: string) => password
   .match(REG_EXP_FOR_VALIDATE_PASSWORD);
 
-
 const humanizeTime = (time: number) => (
-  time > 3600
-    ? (`-${Math.floor(time / 3600)}:${Math.floor((time / 3600 - Math.floor(time / 3600)) * 60)}:${Math.floor(((time / 3600 - Math.floor(time / 3600)) * 60 - Math.floor((time / 3600 - Math.floor(time / 3600)) * 60)) * 60)}`)
-    : (`-${Math.floor(time / 60)}:${Math.floor((time / 60 - Math.floor(time / 60)) * 60)}`)
+  time > SECONDS_IN_HOUR
+    ? (`-${Math.floor(time / SECONDS_IN_HOUR)}:${Math.floor((time / SECONDS_IN_HOUR - Math.floor(time / SECONDS_IN_HOUR)) * SECONDS_IN_MINNUTE)}:${Math.floor(((time / SECONDS_IN_HOUR - Math.floor(time / SECONDS_IN_HOUR)) * SECONDS_IN_MINNUTE - Math.floor((time / SECONDS_IN_HOUR - Math.floor(time / SECONDS_IN_HOUR)) * SECONDS_IN_MINNUTE)) * SECONDS_IN_MINNUTE)}`)
+    : (`-${Math.floor(time / SECONDS_IN_MINNUTE)}:${Math.floor((time / SECONDS_IN_MINNUTE - Math.floor(time / SECONDS_IN_MINNUTE)) * SECONDS_IN_MINNUTE)}`)
 );
 
+const mesureVideoOptions = (
+  firstVideoOption: number | undefined,
+  SecondVideoOption: number | undefined,
+  mathAction: string) => {
+  switch(true) {
+    case !firstVideoOption || !SecondVideoOption:
+      return DEFAULT_VIDEO_PARAM_VALUE;
+    case mathAction === MathActions.MINUS:
+      return Math.floor(Number(firstVideoOption)) - Math.floor(Number(SecondVideoOption));
+    case mathAction === MathActions.DIVIDE:
+      return Number(firstVideoOption) / (Number(SecondVideoOption)) * NUMBER_OF_PERCENTS_IN_WHOLE;
+    default:
+      return DEFAULT_VIDEO_PARAM_VALUE;
+  }
+};
 
 export {
   huminizaRAting,
@@ -46,4 +60,5 @@ export {
   validateEmail,
   validatePassword,
   humanizeTime,
+  mesureVideoOptions,
 };

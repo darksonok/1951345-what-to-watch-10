@@ -28,6 +28,17 @@ export enum FavoriteStatus {
   NOTINLIST = 0
 }
 
+export enum MathActions {
+  DIVIDE = '/',
+  MINUS = '-',
+}
+
+export enum VideoParams {
+  ESTIMATE_TIME = 'estimateTime',
+  VIDEO_PROGRESS = 'videoProgress',
+  VIDEO_PROCESS_POSITION = 'videoProcessPosition',
+}
+
 const RATING_VALUES: number[] = [1,2,3,4,5,6,7,8,9,10];
 
 const PromoFilm = {
@@ -78,6 +89,14 @@ const REVIEW_MAX_LENGTH = 400;
 
 const REVIEW_MIN_LENGTH = 50;
 
+const SECONDS_IN_HOUR = 3600;
+
+const SECONDS_IN_MINNUTE = 60;
+
+const NUMBER_OF_PERCENTS_IN_WHOLE = 100;
+
+const DEFAULT_VIDEO_PARAM_VALUE = 0;
+
 export {
   RATING_VALUES,
   PromoFilm,
@@ -94,4 +113,8 @@ export {
   TIMEOUT_SHOW_ERROR,
   REVIEW_MAX_LENGTH,
   REVIEW_MIN_LENGTH,
+  SECONDS_IN_HOUR,
+  SECONDS_IN_MINNUTE,
+  NUMBER_OF_PERCENTS_IN_WHOLE,
+  DEFAULT_VIDEO_PARAM_VALUE,
 };

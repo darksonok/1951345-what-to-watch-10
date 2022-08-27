@@ -16,7 +16,7 @@ function MyListButton ({ id }: MyListButtonProps): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   useEffect(() => {
-    if(allFavoritesFilms.filter((film: Film) => film.id === id).length > 0){
+    if (allFavoritesFilms.filter((film: Film) => film.id === id).length > 0) {
       setFilmFavorite(true);
     } else {
       setFilmFavorite(false);
@@ -26,7 +26,7 @@ function MyListButton ({ id }: MyListButtonProps): JSX.Element {
   const navigate = useNavigate();
 
   const onMyListClick = () => {
-    if(id === undefined) {
+    if (id === undefined) {
       return null;
     }
     isFilmFavorite
