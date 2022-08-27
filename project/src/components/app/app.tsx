@@ -9,13 +9,14 @@ import MoviePage from '../../pages/movie-page/movie-page';
 import NotFound from '../../pages/not-found/not-found';
 import Player from '../../pages/player/player';
 import browserHistory from '../../services/browser-history';
+import { getLoadingStatus } from '../../store/selectors';
 import HistoryRouter from '../history-route/history-route';
 import PrivateRoute from '../private-route/private-route';
 import Spinner from '../spinner/spinner';
 
 function App(): JSX.Element {
 
-  const {isLoading } = useAppSelector((state) => state);
+  const isLoading = useAppSelector(getLoadingStatus);
 
   if(isLoading) {
     return (
