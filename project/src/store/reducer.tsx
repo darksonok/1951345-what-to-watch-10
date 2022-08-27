@@ -1,7 +1,20 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { InitialState } from '../types/types';
-import { changeAuthorizationStatus, changeGenreAction, changeLoadingStatus, loadFavoriteFilms, loadFilms, loadPromoFilm, saveUserData, setError, showMoreFilms } from './actions';
-import { AuthorizationStatus, NUMBER_FILMS_TO_SHOW } from '../const';
+import {
+  changeAuthorizationStatus,
+  changeGenreAction,
+  changeLoadingStatus,
+  loadFavoriteFilms,
+  loadFilms,
+  loadPromoFilm,
+  saveUserData,
+  setError,
+  showMoreFilms
+} from './actions';
+import {
+  AuthorizationStatus,
+  NUMBER_FILMS_TO_SHOW
+} from '../const';
 
 export const initialState: InitialState = {
   genre: 'All genres',
@@ -13,6 +26,7 @@ export const initialState: InitialState = {
   authorizationStatus: AuthorizationStatus.Unknown,
   user: null,
   error: null,
+  errorCode: null,
   favoriteFilms: []
 };
 

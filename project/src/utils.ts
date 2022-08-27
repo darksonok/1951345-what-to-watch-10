@@ -1,22 +1,18 @@
-import { DEFAULT_VIDEO_PARAM_VALUE, HUMANIZE_RATION_OPTIONS, MathActions, NUMBER_OF_PERCENTS_IN_WHOLE, REG_EXP_FOR_VALIDATE_EMAIL, REG_EXP_FOR_VALIDATE_PASSWORD, SECONDS_IN_HOUR, SECONDS_IN_MINNUTE } from './const';
+import { DEFAULT_VIDEO_PARAM_VALUE, HUMANIZE_RATION_OPTIONS, MathActions, monthNames, NUMBER_OF_PERCENTS_IN_WHOLE, REG_EXP_FOR_VALIDATE_EMAIL, REG_EXP_FOR_VALIDATE_PASSWORD, SECONDS_IN_HOUR, SECONDS_IN_MINNUTE } from './const';
 import { Film } from './types/types';
 
 const huminizaRAting = (rating: number) => {
   switch(true){
-    case (rating === HUMANIZE_RATION_OPTIONS.BEST):
-      return 'Best';
-    case (rating > HUMANIZE_RATION_OPTIONS.GOOD && rating < HUMANIZE_RATION_OPTIONS.BEST):
+    case (rating === HUMANIZE_RATION_OPTIONS.VERY_GOOD):
+      return 'Awesome';
+    case (rating > HUMANIZE_RATION_OPTIONS.GOOD && rating < HUMANIZE_RATION_OPTIONS.VERY_GOOD):
       return 'Very Good';
-    case (rating > HUMANIZE_RATION_OPTIONS.NOT_SO_BAD && rating <= HUMANIZE_RATION_OPTIONS.GOOD):
+    case (rating > HUMANIZE_RATION_OPTIONS.NORMAL && rating <= HUMANIZE_RATION_OPTIONS.GOOD):
       return 'Good';
-    case (rating > HUMANIZE_RATION_OPTIONS.BAD && rating <= HUMANIZE_RATION_OPTIONS.NOT_SO_BAD):
-      return 'Not So Bad';
+    case (rating > HUMANIZE_RATION_OPTIONS.BAD && rating <= HUMANIZE_RATION_OPTIONS.NORMAL):
+      return 'Normal';
     case (rating > HUMANIZE_RATION_OPTIONS.VERY_BAD && rating <= HUMANIZE_RATION_OPTIONS.BAD):
       return 'Bad';
-    case (rating > HUMANIZE_RATION_OPTIONS.BETTER_GO_HOME && rating <= HUMANIZE_RATION_OPTIONS.VERY_BAD):
-      return 'Very Bad';
-    case (rating === HUMANIZE_RATION_OPTIONS.BETTER_GO_HOME):
-      return 'Better Go Home';
   }
 };
 
@@ -54,6 +50,11 @@ const mesureVideoOptions = (
   }
 };
 
+const humanizeDate = (date: string) => {
+  const parsedDate = new Date(date);
+  return `${monthNames[parsedDate.getMonth()]} ${parsedDate.getDate()}, ${parsedDate.getFullYear()}`;
+};
+
 export {
   huminizaRAting,
   getFilmGenres,
@@ -61,4 +62,5 @@ export {
   validatePassword,
   humanizeTime,
   mesureVideoOptions,
+  humanizeDate
 };

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { fetchReviews } from '../../../services/api';
 import { Review, ReviewsProps } from '../../../types/types';
+import { humanizeDate } from '../../../utils';
 
 function Reviews ({id}: ReviewsProps) {
   const [reviews, setReviews] = useState([] as Review[]);
@@ -25,7 +26,7 @@ function Reviews ({id}: ReviewsProps) {
               <p className="review__text">{review.comment}</p>
               <footer className="review__details">
                 <cite className="review__author">{review.user.name}</cite>
-                <time className="review__date" dateTime={review.date}>{review.date}</time>
+                <time className="review__date" dateTime={review.date}>{humanizeDate(review.date)}</time>
               </footer>
             </blockquote>
 

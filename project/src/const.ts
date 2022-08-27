@@ -5,7 +5,7 @@ export enum AppRoute {
   Film = '/films/:id',
   AddReview = '/films/:id/review',
   Player = '/player/:id',
-  NotFound = '/not_found'
+  NotFound = '/not_found',
 }
 
 export enum APIRoute {
@@ -63,11 +63,11 @@ const NUMBER_OF_SIMILAR_FILMS_IN_FILM_PAGE = 4;
 
 const HUMANIZE_RATION_OPTIONS = {
   BETTER_GO_HOME: 0,
-  VERY_BAD: 2,
-  BAD: 4,
-  NOT_SO_BAD: 6,
+  VERY_BAD: 0,
+  BAD: 3,
+  NORMAL: 5,
   GOOD: 8,
-  BEST: 10
+  VERY_GOOD: 10
 };
 
 const DEFAULT_GENRE = 'All genres';
@@ -83,7 +83,7 @@ const TIMEOUT_SHOW_ERROR = 2000;
 
 const REG_EXP_FOR_VALIDATE_EMAIL = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-const REG_EXP_FOR_VALIDATE_PASSWORD = /^\S*$/;
+const REG_EXP_FOR_VALIDATE_PASSWORD = /(?=.*[0-9])(?=.*[a-z]|[A-Z])/;
 
 const REVIEW_MAX_LENGTH = 400;
 
@@ -96,6 +96,10 @@ const SECONDS_IN_MINNUTE = 60;
 const NUMBER_OF_PERCENTS_IN_WHOLE = 100;
 
 const DEFAULT_VIDEO_PARAM_VALUE = 0;
+
+const MAX_GENRES_TO_SHOW = 9;
+
+const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 export {
   RATING_VALUES,
@@ -117,4 +121,6 @@ export {
   SECONDS_IN_MINNUTE,
   NUMBER_OF_PERCENTS_IN_WHOLE,
   DEFAULT_VIDEO_PARAM_VALUE,
+  MAX_GENRES_TO_SHOW,
+  monthNames,
 };

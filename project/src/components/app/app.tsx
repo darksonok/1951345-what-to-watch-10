@@ -15,7 +15,7 @@ import Spinner from '../spinner/spinner';
 
 function App(): JSX.Element {
 
-  const {isLoading} = useAppSelector((state) => state);
+  const {isLoading } = useAppSelector((state) => state);
 
   if(isLoading) {
     return (
