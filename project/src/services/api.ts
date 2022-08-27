@@ -28,7 +28,7 @@ api.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     const token = getToken();
 
-    if(token) {
+    if (token) {
       config.headers['X-Token'] = token;
     }
 
@@ -39,7 +39,7 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if(error.message && shouldDisplayError(error.response)){
+    if (error.message && shouldDisplayError(error.response)) {
       processErrorHandle(error.response.data.error);
     }
     throw error;

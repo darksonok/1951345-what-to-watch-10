@@ -18,7 +18,7 @@ function App(): JSX.Element {
 
   const isLoading = useAppSelector(getLoadingStatus);
 
-  if(isLoading) {
+  if (isLoading) {
     return (
       <Spinner />
     );

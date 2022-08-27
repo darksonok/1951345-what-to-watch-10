@@ -9,7 +9,7 @@ function Tabs({openedFilm}: TabsProps) {
   const [selectedTab, setSelectedTab] = useState(TABS.OVERVIEW);
   const renderSwitch = (tab: string) => {
     const totalRating = (openedFilm.rating).toFixed(1);
-    switch(true){
+    switch(true) {
       case (tab === TABS.OVERVIEW):
         return (
           <Overview openedFilm={openedFilm} totalRating={totalRating} />

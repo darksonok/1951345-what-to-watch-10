@@ -2,7 +2,7 @@ import { DEFAULT_VIDEO_PARAM_VALUE, HUMANIZE_RATION_OPTIONS, MathActions, monthN
 import { Film } from './types/types';
 
 const huminizaRAting = (rating: number) => {
-  switch(true){
+  switch(true) {
     case (rating === HUMANIZE_RATION_OPTIONS.VERY_GOOD):
       return 'Awesome';
     case (rating > HUMANIZE_RATION_OPTIONS.GOOD && rating < HUMANIZE_RATION_OPTIONS.VERY_GOOD):

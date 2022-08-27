@@ -30,7 +30,7 @@ function Authorization() {
 
     showPasswordError && setHintMessage('Password need to contain at least one symbol and one digit');
 
-    if(validateEmail(formData.email) &&
+    if (validateEmail(formData.email) &&
     validatePassword(formData.password)) {
       setSubmitDisabled(false);
       setHintMessage('');
