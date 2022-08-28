@@ -9,6 +9,7 @@ import {
   loadPromoFilm,
   saveUserData,
   setError,
+  setErrorCode,
   showMoreFilms
 } from './actions';
 import {
@@ -56,6 +57,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setError, (state, action) => {
       state.error = action.payload;
+    })
+    .addCase(setErrorCode, (state, action) => {
+      state.errorCode = action.payload;
     })
     .addCase(loadFavoriteFilms, (state, action) => {
       state.favoriteFilms = action.payload;

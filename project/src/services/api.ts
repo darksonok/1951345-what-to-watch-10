@@ -7,6 +7,7 @@ import { Film, Review } from '../types/types';
 import { NavigateFunction } from 'react-router-dom';
 import { store } from '../store';
 import { fetchFavoriteFilmsAction } from '../store/api-actions';
+import { setErrorCode } from '../store/actions';
 
 const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.BAD_REQUEST]: true,
@@ -39,6 +40,7 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
+    store.dispatch(setErrorCode(error.response.status));
     if (error.message && shouldDisplayError(error.response)) {
       processErrorHandle(error.response.data.error);
     }

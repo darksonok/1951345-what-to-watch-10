@@ -14,6 +14,7 @@ const getUserInfo = (state: State) => state.user;
 const getFavoriteFilms = (state: State) => state.favoriteFilms;
 const getGenres = (state: State) => getFilmGenres(state.films);
 const getLoadingStatus = (state: State) => (state.isLoading);
+const getErrorCode = (state: State) => (state.errorCode);
 
 export const filterFilmsByGenre = createSelector(
   [getActiveGenre, getFilms],
@@ -34,6 +35,7 @@ export {
   getUserInfo,
   getFavoriteFilms,
   getLoadingStatus,
+  getErrorCode,
 };
 
 

@@ -100,6 +100,8 @@ const MAX_GENRES_TO_SHOW = 9;
 
 const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
+const SERVER_BROKEN_STATUS_ERROR_LOWER_THRESHOLD = 500;
+
 export {
   RATING_VALUES,
   PromoFilm,
@@ -122,4 +124,5 @@ export {
   DEFAULT_VIDEO_PARAM_VALUE,
   MAX_GENRES_TO_SHOW,
   monthNames,
+  SERVER_BROKEN_STATUS_ERROR_LOWER_THRESHOLD
 };

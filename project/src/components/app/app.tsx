@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import { AppRoute, SERVER_BROKEN_STATUS_ERROR_LOWER_THRESHOLD } from '../../const';
 import { useAppSelector } from '../../hooks';
 import AddReview from '../../pages/add-review/add-review';
 import Authorization from '../../pages/authorization/authorization';
@@ -9,18 +9,22 @@ import MoviePage from '../../pages/movie-page/movie-page';
 import NotFound from '../../pages/not-found/not-found';
 import Player from '../../pages/player/player';
 import browserHistory from '../../services/browser-history';
-import { getLoadingStatus } from '../../store/selectors';
+import { getErrorCode, getLoadingStatus } from '../../store/selectors';
 import HistoryRouter from '../history-route/history-route';
 import PrivateRoute from '../private-route/private-route';
+import ServerUnavailabe from '../server-unavailable/server-unavailable';
 import Spinner from '../spinner/spinner';
 
 function App(): JSX.Element {
 
   const isLoading = useAppSelector(getLoadingStatus);
+  const errorCode = useAppSelector(getErrorCode);
 
   if (isLoading) {
     return (
-      <Spinner />
+      errorCode !== null && errorCode >= SERVER_BROKEN_STATUS_ERROR_LOWER_THRESHOLD
+        ? <ServerUnavailabe />
+        : <Spinner />
     );
   }
 
