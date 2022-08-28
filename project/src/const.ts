@@ -5,7 +5,7 @@ export enum AppRoute {
   Film = '/films/:id',
   AddReview = '/films/:id/review',
   Player = '/player/:id',
-  NotFound = '/not_found'
+  NotFound = '/not_found',
 }
 
 export enum APIRoute {
@@ -14,13 +14,29 @@ export enum APIRoute {
   Authorization = '/login',
   Logout = '/logout',
   Reviews = '/comments',
-  Favurite = '/favorite',
+  Favorite = '/favorite',
 }
 
 export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
+}
+
+export enum FavoriteStatus {
+  INLIST = 1,
+  NOTINLIST = 0
+}
+
+export enum MathActions {
+  DIVIDE = '/',
+  MINUS = '-',
+}
+
+export enum VideoParams {
+  ESTIMATE_TIME = 'estimateTime',
+  VIDEO_PROGRESS = 'videoProgress',
+  VIDEO_PROCESS_POSITION = 'videoProcessPosition',
 }
 
 const RATING_VALUES: number[] = [1,2,3,4,5,6,7,8,9,10];
@@ -46,12 +62,11 @@ const TABS: {
 const NUMBER_OF_SIMILAR_FILMS_IN_FILM_PAGE = 4;
 
 const HUMANIZE_RATION_OPTIONS = {
-  BETTER_GO_HOME: 0,
-  VERY_BAD: 2,
-  BAD: 4,
-  NOT_SO_BAD: 6,
+  VERY_BAD: 0,
+  BAD: 3,
+  NORMAL: 5,
   GOOD: 8,
-  BEST: 10
+  VERY_GOOD: 10
 };
 
 const DEFAULT_GENRE = 'All genres';
@@ -67,11 +82,25 @@ const TIMEOUT_SHOW_ERROR = 2000;
 
 const REG_EXP_FOR_VALIDATE_EMAIL = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-const REG_EXP_FOR_VALIDATE_PASSWORD = /^\S*$/;
+const REG_EXP_FOR_VALIDATE_PASSWORD = /(?=.*[0-9])(?=.*[a-z]|[A-Z])/;
 
 const REVIEW_MAX_LENGTH = 400;
 
 const REVIEW_MIN_LENGTH = 50;
+
+const SECONDS_IN_HOUR = 3600;
+
+const SECONDS_IN_MINNUTE = 60;
+
+const NUMBER_OF_PERCENTS_IN_WHOLE = 100;
+
+const DEFAULT_VIDEO_PARAM_VALUE = 0;
+
+const MAX_GENRES_TO_SHOW = 9;
+
+const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+const SERVER_BROKEN_STATUS_ERROR_LOWER_THRESHOLD = 500;
 
 export {
   RATING_VALUES,
@@ -89,4 +118,11 @@ export {
   TIMEOUT_SHOW_ERROR,
   REVIEW_MAX_LENGTH,
   REVIEW_MIN_LENGTH,
+  SECONDS_IN_HOUR,
+  SECONDS_IN_MINNUTE,
+  NUMBER_OF_PERCENTS_IN_WHOLE,
+  DEFAULT_VIDEO_PARAM_VALUE,
+  MAX_GENRES_TO_SHOW,
+  monthNames,
+  SERVER_BROKEN_STATUS_ERROR_LOWER_THRESHOLD
 };

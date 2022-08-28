@@ -1,55 +1,101 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Spinner from '../../components/spinner/spinner';
+import VideoPlayerControls from '../../components/video-player-controls/video-player-controls';
+import { DEFAULT_VIDEO_PARAM_VALUE, MathActions, VideoParams } from '../../const';
 import { fetchChosenFilm } from '../../services/api';
 import { Film } from '../../types/types';
+import { humanizeTime, mesureVideoOptions } from '../../utils';
 
 function Player() {
   const { id } = useParams();
-  const navigate = useNavigate();
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const [openedFilm, setOpenedFilm] = useState({} as Film);
-  const [isFilmLoading, setFilmLoadingStatus] = useState(true);
+  const [isOpenedFilmLoading, setOpenedFilmLoadingStatus] = useState(true);
+  const [isVideoPlaying, setVideoPlayingStatus] = useState(true);
+  const [videoDuration, setVideoDuration] = useState('');
+  const [videoProcessPosition, setVideoProcessPosition] = useState(0);
+  const [videoProgress, setVideoProgress] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetchChosenFilm(Number(id), setFilmLoadingStatus, setOpenedFilm, navigate);
-    return (() => {setOpenedFilm({} as Film); setFilmLoadingStatus(true);});
+    fetchChosenFilm(Number(id), setOpenedFilmLoadingStatus, setOpenedFilm, navigate);
   }, [id, navigate]);
 
+  const pauseVideo = () => {
+    setVideoPlayingStatus(false);
+    videoRef.current?.pause();
+  };
+
+  const playVideo = () => {
+    setVideoPlayingStatus(true);
+    videoRef.current?.play();
+  };
+
+  const onPlayButtonClick = () => {
+    if (videoRef.current === null) {
+      return null;
+    }
+    isVideoPlaying
+      ? pauseVideo()
+      : playVideo ();
+  };
+
+  const onFullScreenButtonClick = () => {
+    if (videoRef.current === null) {
+      return null;
+    }
+    videoRef.current.requestFullscreen();
+  };
+
+  const getVideoParams = (param: string) => {
+    switch(true) {
+      case param === VideoParams.ESTIMATE_TIME:
+        return mesureVideoOptions(videoRef.current?.duration, videoRef.current?.currentTime, MathActions.MINUS);
+      case param === VideoParams.VIDEO_PROGRESS:
+        return mesureVideoOptions(videoRef.current?.buffered.end(0), videoRef.current?.duration, MathActions.DIVIDE);
+      case param === VideoParams.VIDEO_PROCESS_POSITION:
+        return mesureVideoOptions(videoRef.current?.currentTime, videoRef.current?.duration, MathActions.DIVIDE);
+      default:
+        return DEFAULT_VIDEO_PARAM_VALUE;
+    }
+  };
+
   return (
-    isFilmLoading
+    isOpenedFilmLoading
       ? <Spinner />
       :
       <div className="player">
-        <video src={openedFilm.videoLink} className="player__video" poster={openedFilm.backgroundImage}></video>
+        <video
+          src={openedFilm.videoLink}
+          className="player__video"
+          poster={openedFilm.backgroundImage}
+          ref={videoRef}
+          autoPlay
+          onCanPlay={() => setVideoDuration(humanizeTime(getVideoParams(VideoParams.ESTIMATE_TIME)))}
+          onTimeUpdate={() => {
+            setVideoDuration(humanizeTime(getVideoParams(VideoParams.ESTIMATE_TIME)));
+            setVideoProcessPosition(getVideoParams(VideoParams.VIDEO_PROCESS_POSITION));
+            setVideoProgress(getVideoParams(VideoParams.VIDEO_PROGRESS));
+          } }
+        >
+        </video>
 
-        <button type="button" className="player__exit">Exit</button>
-
-        <div className="player__controls">
-          <div className="player__controls-row">
-            <div className="player__time">
-              <progress className="player__progress" value="30" max="100"></progress>
-              <div className="player__toggler" >Toggler</div>
-            </div>
-            <div className="player__time-value">1:30:29</div>
-          </div>
-
-          <div className="player__controls-row">
-            <button type="button" className="player__play">
-              <svg viewBox="0 0 19 19" width="19" height="19">
-                <use xlinkHref="#play-s"></use>
-              </svg>
-              <span>Play</span>
-            </button>
-            <div className="player__name">Transpotting</div>
-
-            <button type="button" className="player__full-screen">
-              <svg viewBox="0 0 27 27" width="27" height="27">
-                <use xlinkHref="#full-screen"></use>
-              </svg>
-              <span>Full screen</span>
-            </button>
-          </div>
-        </div>
+        <button
+          type="button"
+          className="player__exit"
+          onClick={() => navigate(`/films/${id}`)}
+        >
+          Exit
+        </button>
+        <VideoPlayerControls
+          videoProgress={videoProgress}
+          videoProcessPosition={videoProcessPosition}
+          videoDuration={videoDuration}
+          onPlayButtonClick={onPlayButtonClick}
+          isVideoPlaying={isVideoPlaying}
+          onFullScreenButtonClick={onFullScreenButtonClick}
+        />
       </div>
   );
 }

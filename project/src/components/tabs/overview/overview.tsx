@@ -17,7 +17,7 @@ function Overview ({openedFilm, totalRating} : OverviewProps) {
       <div className="film-card__text">
         <p>{openedFilm.description} </p>
         <p className="film-card__director"><strong>{openedFilm.director}</strong></p>
-        <p className="film-card__starring"><strong>{openedFilm.starring}</strong></p>
+        <p className="film-card__starring"><strong>{openedFilm.starring.join(', ')}</strong></p>
       </div>
     </>
   );

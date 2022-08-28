@@ -80,8 +80,10 @@ export const logoutAction = createAsyncThunk<void, undefined, thunkOptions>(
 export const fetchFavoriteFilmsAction = createAsyncThunk<void, undefined, thunkOptions>(
   'data/fetchFilms',
   async (_arg, {dispatch, extra: api}) => {
-    const {data} = await api.get<Film[]>(APIRoute.Favurite);
+    const {data} = await api.get<Film[]>(APIRoute.Favorite);
     dispatch(changeLoadingStatus(false));
     dispatch(loadFavoriteFilms(data));
   }
 );
+
+

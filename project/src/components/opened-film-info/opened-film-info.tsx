@@ -6,6 +6,7 @@ import { fetchChosenFilm } from '../../services/api';
 import { getAuthorizationStatus } from '../../store/selectors';
 import { Film } from '../../types/types';
 import Header from '../header/header';
+import MyListButton from '../my-list-button/my-list-button';
 import Spinner from '../spinner/spinner';
 import Tabs from '../tabs/tabs';
 
@@ -57,13 +58,7 @@ function OpenedFilmInfo ({ id }: OpenedFilmInfoProps): JSX.Element {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">9</span>
-                </button>
+                <MyListButton id={id}/>
                 {authorizationStatus === AuthorizationStatus.NoAuth ?
                   <span className="btn film-card__button">You need to authorize to add reviews</span> :
                   <Link

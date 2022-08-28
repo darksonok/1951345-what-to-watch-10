@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom';
-import { AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
-import { getFilms, getPromoFilm } from '../../store/selectors';
+import { getPromoFilm } from '../../store/selectors';
+import { Film } from '../../types/types';
 import Header from '../header/header';
+import MyListButton from '../my-list-button/my-list-button';
 
 function PromoFilmComponent (): JSX.Element {
-  const promoFilm = useAppSelector(getPromoFilm);
+  const promoFilm: Film | null = useAppSelector(getPromoFilm);
   const navigate = useNavigate();
-  const allFilms = useAppSelector(getFilms);
 
   return (
     <section className="film-card">
@@ -36,26 +36,14 @@ function PromoFilmComponent (): JSX.Element {
               <button
                 className="btn btn--play film-card__button"
                 type="button"
-                onClick={() => navigate(`/films/${promoFilm?.id}`)}
+                onClick={() => navigate(`/player/${promoFilm?.id}`)}
               >
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
                 </svg>
                 <span>Play</span>
               </button>
-              <button
-                className="btn btn--list film-card__button"
-                type="button"
-                onClick={() => navigate(AppRoute.MyList)}
-              >
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"></use>
-                </svg>
-                <span>My list</span>
-                <span className="film-card__count">
-                  {allFilms.filter((film) => film.isFavorite === true).length}
-                </span>
-              </button>
+              <MyListButton id={promoFilm?.id}/>
             </div>
           </div>
         </div>

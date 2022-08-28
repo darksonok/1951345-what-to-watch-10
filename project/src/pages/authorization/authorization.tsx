@@ -28,9 +28,9 @@ function Authorization() {
 
     showEmailError && setHintMessage('Please enter a valid email address');
 
-    showPasswordError && setHintMessage('Please enter a valid password without whitespaces');
+    showPasswordError && setHintMessage('Password need to contain at least one symbol and one digit');
 
-    if(validateEmail(formData.email) &&
+    if (validateEmail(formData.email) &&
     validatePassword(formData.password)) {
       setSubmitDisabled(false);
       setHintMessage('');

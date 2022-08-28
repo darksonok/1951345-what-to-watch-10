@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FilmCardProps } from '../../types/types';
-import VideoPreviewPlayer from '../video-player/video-player';
+import VideoPreviewPlayer from '../video-preview-player/video-preview-player';
 
 function FilmCard({ film }: FilmCardProps): JSX.Element {
 

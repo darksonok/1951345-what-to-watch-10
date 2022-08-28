@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { MAX_GENRES_TO_SHOW } from '../../const';
 import { useAppSelector } from '../../hooks';
 import { changeGenreAction } from '../../store/actions';
 import { getActiveGenre, getGenres } from '../../store/selectors';
@@ -17,7 +18,7 @@ function GenreList (): JSX.Element {
 
   return (
     <ul className="catalog__genres-list">
-      {genres.map((genre) => (
+      {genres.slice(0,MAX_GENRES_TO_SHOW).map((genre) => (
         <Genre
           key={genre}
           genre={genre}
