@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { APIRoute, AppRoute, BASE_URL, CONNECTION_TIMEOUT, FavoriteStatus } from '../const';
+import { APIRoute, AppRoute, ConnectionParams, FavoriteStatus } from '../const';
 import { getToken } from './token';
 import { StatusCodes } from 'http-status-codes';
 import { processErrorHandle } from './process-error-handle';
@@ -16,10 +16,11 @@ const StatusCodeMapping: Record<number, boolean> = {
 };
 
 const shouldDisplayError = (response: AxiosResponse) => !!StatusCodeMapping[response.status];
-
-const options: AxiosRequestConfig = {
-  baseURL: BASE_URL,
-  timeout: CONNECTION_TIMEOUT
+export const controller = new AbortController();
+const options: AxiosRequestConfig & {signal: AbortSignal} = {
+  baseURL: String(ConnectionParams.baseUrl),
+  timeout: Number(ConnectionParams.ConnectionTimeOut),
+  signal: controller.signal,
 };
 
 const createAPI = (): AxiosInstance => axios.create(options);

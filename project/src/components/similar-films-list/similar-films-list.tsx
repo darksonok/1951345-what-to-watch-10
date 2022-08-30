@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { NUMBER_OF_SIMILAR_FILMS_IN_FILM_PAGE } from '../../const';
-import { fetchSimilarFilms } from '../../services/api';
+import { controller, fetchSimilarFilms } from '../../services/api';
 import { Film } from '../../types/types';
 import { FilmsList } from '../films-list/films-list';
 import Spinner from '../spinner/spinner';
@@ -14,6 +14,7 @@ function SimilarFilmsList ({ id }: SimilarFilmsListProps): JSX.Element {
   const [similarFilms, setSimilarFilms] = useState({} as Film[]);
   useEffect(() => {
     fetchSimilarFilms(Number(id), setSimilarFilmsLoadingStatus, setSimilarFilms);
+    return (() => controller.abort());
   }, [id]);
 
   return (

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthorizationStatus } from '../../const';
 import { useAppSelector } from '../../hooks';
-import { fetchChosenFilm } from '../../services/api';
+import { controller, fetchChosenFilm } from '../../services/api';
 import { getAuthorizationStatus } from '../../store/selectors';
 import { Film } from '../../types/types';
 import Header from '../header/header';
@@ -22,7 +22,10 @@ function OpenedFilmInfo ({ id }: OpenedFilmInfoProps): JSX.Element {
 
   useEffect(() => {
     fetchChosenFilm(Number(id), setFilmLoadingStatus, setOpenedFilm, navigate);
-    return (() => {setOpenedFilm({} as Film); setFilmLoadingStatus(true);});
+    return (() => {
+      setOpenedFilm({} as Film); setFilmLoadingStatus(true);
+      controller.abort();
+    });
   }, [id, navigate]);
 
   return (
@@ -59,8 +62,7 @@ function OpenedFilmInfo ({ id }: OpenedFilmInfoProps): JSX.Element {
                   <span>Play</span>
                 </button>
                 <MyListButton id={id}/>
-                {authorizationStatus === AuthorizationStatus.NoAuth ?
-                  <span className="btn film-card__button">You need to authorize to add reviews</span> :
+                {authorizationStatus === AuthorizationStatus.Auth &&
                   <Link
                     to={`/films/${openedFilm.id}/review`}
                     className="btn film-card__button"

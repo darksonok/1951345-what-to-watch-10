@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchReviews } from '../../../services/api';
+import { controller, fetchReviews } from '../../../services/api';
 import { Review, ReviewsProps } from '../../../types/types';
 import { humanizeDate } from '../../../utils';
 
@@ -9,6 +9,7 @@ function Reviews ({id}: ReviewsProps) {
 
   useEffect(() => {
     fetchReviews(id, setReviewsLoadingStatus, setReviews);
+    return (() => controller.abort());
   }, [id]);
 
   if (isReviewsLoading) {

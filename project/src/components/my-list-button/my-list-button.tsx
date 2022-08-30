@@ -25,7 +25,7 @@ function MyListButton ({ id }: MyListButtonProps): JSX.Element {
 
   const navigate = useNavigate();
 
-  const onMyListClick = () => {
+  const handleMyListClick = () => {
     if (id === undefined) {
       return null;
     }
@@ -54,7 +54,7 @@ function MyListButton ({ id }: MyListButtonProps): JSX.Element {
       <button
         className="btn btn--list film-card__button"
         type="button"
-        onClick={onMyListClick}
+        onClick={handleMyListClick}
       >
         <svg viewBox="0 0 19 20" width="19" height="20">
           {isFilmFavorite

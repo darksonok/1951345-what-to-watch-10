@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { APIRoute, RATING_VALUES, REVIEW_MAX_LENGTH, REVIEW_MIN_LENGTH } from '../../const';
+import { APIRoute, RATING_VALUES, ReviewLengthThresholds } from '../../const';
 
 import api from '../../services/api';
 
@@ -34,9 +34,9 @@ function AddReviewForm(): JSX.Element {
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    formData['review-text'].length > REVIEW_MIN_LENGTH ?
+    formData['review-text'].length > ReviewLengthThresholds.MinLength ?
       postReviewData() :
-      setHintMessage(`Минимальная длина отзыва - ${REVIEW_MIN_LENGTH} символов`);
+      setHintMessage(`Минимальная длина отзыва - ${ReviewLengthThresholds.MinLength} символов`);
   };
 
   return (
@@ -70,8 +70,8 @@ function AddReviewForm(): JSX.Element {
               placeholder="Review text"
               value={formData['review-text']}
               onChange={onChange}
-              minLength={REVIEW_MIN_LENGTH}
-              maxLength={REVIEW_MAX_LENGTH}
+              minLength={ReviewLengthThresholds.MinLength}
+              maxLength={ReviewLengthThresholds.MaxLength}
             />
             <div className="add-review__submit">
               <button

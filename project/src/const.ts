@@ -71,22 +71,24 @@ const HUMANIZE_RATION_OPTIONS = {
 
 const DEFAULT_GENRE = 'All genres';
 
+export enum ConnectionParams{
+  baseUrl = 'https://10.react.pages.academy/wtw',
+  ConnectionTimeOut = 5000,
+}
 
-const BASE_URL = 'https://10.react.pages.academy/wtw';
-
-const CONNECTION_TIMEOUT = 5000;
+export enum ReviewLengthThresholds {
+  MaxLength = 400,
+  MinLength = 50,
+}
 
 const NUMBER_FILMS_TO_SHOW = 8;
 
 const TIMEOUT_SHOW_ERROR = 2000;
 
-const REG_EXP_FOR_VALIDATE_EMAIL = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-const REG_EXP_FOR_VALIDATE_PASSWORD = /(?=.*[0-9])(?=.*[a-z]|[A-Z])/;
-
-const REVIEW_MAX_LENGTH = 400;
-
-const REVIEW_MIN_LENGTH = 50;
+const RegularExpressionsForSignInForm = {
+  EmailRegularExpression: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+  PasswordRegularExpression: /(?=.*[0-9])(?=.*[a-z]|[A-Z])/
+};
 
 const SECONDS_IN_HOUR = 3600;
 
@@ -110,14 +112,9 @@ export {
   NUMBER_OF_SIMILAR_FILMS_IN_FILM_PAGE,
   HUMANIZE_RATION_OPTIONS,
   DEFAULT_GENRE,
-  BASE_URL,
-  CONNECTION_TIMEOUT,
   NUMBER_FILMS_TO_SHOW,
-  REG_EXP_FOR_VALIDATE_EMAIL,
-  REG_EXP_FOR_VALIDATE_PASSWORD,
+  RegularExpressionsForSignInForm,
   TIMEOUT_SHOW_ERROR,
-  REVIEW_MAX_LENGTH,
-  REVIEW_MIN_LENGTH,
   SECONDS_IN_HOUR,
   SECONDS_IN_MINNUTE,
   NUMBER_OF_PERCENTS_IN_WHOLE,

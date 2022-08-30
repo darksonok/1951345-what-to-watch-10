@@ -1,4 +1,11 @@
-import { DEFAULT_VIDEO_PARAM_VALUE, HUMANIZE_RATION_OPTIONS, MathActions, monthNames, NUMBER_OF_PERCENTS_IN_WHOLE, REG_EXP_FOR_VALIDATE_EMAIL, REG_EXP_FOR_VALIDATE_PASSWORD, SECONDS_IN_HOUR, SECONDS_IN_MINNUTE } from './const';
+import {
+  DEFAULT_VIDEO_PARAM_VALUE,
+  HUMANIZE_RATION_OPTIONS,
+  MathActions, monthNames,
+  NUMBER_OF_PERCENTS_IN_WHOLE,
+  RegularExpressionsForSignInForm,
+  SECONDS_IN_HOUR,
+  SECONDS_IN_MINNUTE } from './const';
 import { Film } from './types/types';
 
 const huminizaRAting = (rating: number) => {
@@ -22,11 +29,11 @@ const getFilmGenres = (filmList: Film[]) => ['All genres', ...new Set(filmList.m
 const validateEmail = (email: string) => email
   .toLowerCase()
   .match(
-    REG_EXP_FOR_VALIDATE_EMAIL
+    new RegExp(RegularExpressionsForSignInForm.EmailRegularExpression)
   );
 
 const validatePassword = (password: string) => password
-  .match(REG_EXP_FOR_VALIDATE_PASSWORD);
+  .match(new RegExp(RegularExpressionsForSignInForm.PasswordRegularExpression));
 
 const humanizeTime = (time: number) => (
   time > SECONDS_IN_HOUR

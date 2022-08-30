@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Spinner from '../../components/spinner/spinner';
 import VideoPlayerControls from '../../components/video-player-controls/video-player-controls';
 import { DEFAULT_VIDEO_PARAM_VALUE, MathActions, VideoParams } from '../../const';
-import { fetchChosenFilm } from '../../services/api';
+import { controller, fetchChosenFilm } from '../../services/api';
 import { Film } from '../../types/types';
 import { humanizeTime, mesureVideoOptions } from '../../utils';
 
@@ -20,6 +20,7 @@ function Player() {
 
   useEffect(() => {
     fetchChosenFilm(Number(id), setOpenedFilmLoadingStatus, setOpenedFilm, navigate);
+    return (() => controller.abort());
   }, [id, navigate]);
 
   const pauseVideo = () => {
